@@ -38,6 +38,7 @@
 
 - Deep Learning is a subset of Machine Learning. It's main aim is to mimic human brain so they actually create multi-layered neural network and this multi layered neural network will basically help us to train the machines or apps whatever we will try to create.
 
+### Basic concepts of Neural Network
 - A neural network is a computational model inspired by how biological neurons in the brain process information. It consists of interconnected nodes (neurons) organized in layers that can learn patterns from data.
 
 **Basic Structure:**
@@ -71,7 +72,9 @@ The "deep" in deep learning refers to having many hidden layers (typically 3 or 
    - **Dimensionality Reduction**: Reduces features while keeping key info (e.g., Principle Component Analysis (PCA)).
 
 ### Key Difference: 
-Supervised learning learns from examples with known outcomes, while unsupervised learning finds patterns in data without being told what to look for.  
+Supervised learning learns from examples with known outcomes, while unsupervised learning finds patterns in data without being told what to look for. 
+
+In case of Unsupervised learning, there is no dependent variable (output)
 
 ### **Example (Supervised Learning)**  
 - **Dataset**: Age (input) → Weight (output).  
@@ -125,8 +128,9 @@ Supervised learning learns from examples with known outcomes, while unsupervised
 1. K-Means Clustering  
 2. DBSCAN  
 3. Hierarchical Clustering  
-4. PCA (Dimensionality Reduction)  
-5. LDA (Linear Discriminant Analysis)  
+4. K Nearest Neighbour Clustering
+5. PCA (Dimensionality Reduction)  
+6. LDA (Linear Discriminant Analysis)  
 
 ---
 
@@ -136,9 +140,9 @@ Supervised learning learns from examples with known outcomes, while unsupervised
 - **Dimensionality Reduction** → Compress features (PCA).  
 - **Next**: Dive into **Linear Regression** (first algorithm).  
 
-- Whenever we will solve a problem in case of supervised machine learning, there will be one dependent feature and there can be any number of independent features.
+- Whenever we will solve a problem in case of supervised machine learning, there will be one dependent feature and there can be any number of independent features. For Example - In case of Age-Weight example, we can consider `age` (which is taken as input) as independent feature and `weight` (that is output) as dependent feature. 
 
-- In Regression problem, the output will be continuous variable 
+- In case of Regression problem, the output will be continuous variable 
 
 - In case of Classification problem, there will be fixed number of categories in the output of problem.
 
@@ -147,3 +151,10 @@ Supervised learning learns from examples with known outcomes, while unsupervised
 - Clustering :- In case of clustering, we used to group similar data. Example - Ad-Marketing uses clustering through Customer Segmentation
 
 ## Linear Regression Algorithm (00:18:14)
+![Linear Regression](/notes/01_Linear_Regression_1.1.png)
+
+**Linear Regression Problem Statement** - Suppose we have given dataset of age (on x-axis) & weight (on y-axis) on 2D plane of XY, where we have calculated weight on the basis of age. In case of Linear Regression, we will try to find best fit line which will help us to do the predicition, i.e wrt any new age (on x-axis) what will be output (weight on y-axis). So, Y-axis (weight) is linear function of X-axis (age)
+
+In case of Linear Regression we try to create a model with the help of training dataset, where the model (hypothesis) takes new age (independent feature) and gives the output of weight and with the help of performance metrics we try to verify whether that model is performing well or not.
+
+![Equation of a straight line](/notes/01_Linear_Regression_Equation_of_Straight_line_1.2.png)
