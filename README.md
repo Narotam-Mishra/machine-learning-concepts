@@ -392,75 +392,211 @@ Think of the cost function like this:
 
 ---
 
-### **1. Linear Regression Problem Statement**
-- **Goal**: Predict a continuous output (dependent variable `y`) based on one/more input features (independent variable `X`).  
-- **Example**: Predict `weight (y)` given `age (X)` using training data.  
-- **Model**: A linear relationship between `X` and `y` is assumed:  
-  \[
-  y = \theta_0 + \theta_1 X \quad \text{(Hypothesis Function)}
-  \]
-  - **Notations**:  
-    - `θ₀` (Theta₀): **Intercept** (value of `y` when `X=0`).  
-    - `θ₁` (Theta₁): **Slope/Coefficient** (change in `y` per unit change in `X`).  
+## 🔹 **1. Problem Statement of Linear Regression**
+
+* Goal: Predict a **continuous target variable `y`** (e.g., weight) based on an **independent variable `X`** (e.g., age).
+* This is achieved by **fitting a straight line** through the data.
+* Model is trained on a **training dataset**, then used to **predict unseen data**.
 
 ---
 
-### **2. Best Fit Line**
-- **Objective**: Find the line that **minimizes the error** between predicted (`ŷ`) and actual (`y`) values.  
-- **Error Metric**: **Sum of squared vertical distances** (residuals) between data points and the line.  
+## 🔹 **2. Hypothesis / Model Equation**
+
+* The linear regression model assumes the relationship:
+
+  $$
+  h_\theta(x) = \theta_0 + \theta_1 \cdot x
+  $$
+* Common notations:
+
+  * $y = mx + c$
+  * $y = \beta_0 + \beta_1 x$
+  * $h_\theta(x) = \theta_0 + \theta_1 x$
 
 ---
 
-### **3. Cost Function (J)**
-- **Purpose**: Quantify how "wrong" the current line is.  
-- **Equation (Mean Squared Error - MSE)**:
-  \[
+## 🔹 **3. Components of the Model**
+
+### 📌 `θ₀` (Theta 0)
+
+* **Intercept**: The value of `y` when `x = 0`
+* Graphically, it is the **point where the line cuts the y-axis**
+
+### 📌 `θ₁` (Theta 1)
+
+* **Slope / Coefficient**: The rate at which `y` changes with `x`
+* Interpreted as: **"With one unit increase in `x`, how much does `y` change?"**
+
+---
+
+## 🔹 **4. Goal of Linear Regression**
+
+* To find the **best fit line** such that:
+
+  * The **distance between actual values (`y`) and predicted values (`hθ(x)`) is minimized**
+* This is measured using a **cost function**.
+
+---
+
+## 🔹 **5. Cost Function (Squared Error Function)**
+
+* Formula:
+
+  $$
   J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
-  \]
-  - `m`: Number of training examples.  
-  - `hθ(xⁱ)`: Predicted value for the `i-th` input.  
-  - **Why `1/2m`**:  
-    - `1/m`: Averages the error over all examples.  
-    - `1/2`: Simplifies derivative calculations (cancels the `2` from the square’s derivative).  
+  $$
+
+### Key Points:
+
+* $h_\theta(x)$: Prediction from the model.
+* $y$: Actual value from the dataset.
+* $m$: Number of training examples.
+* **Why square the errors?**
+
+  * To avoid cancellation of positive and negative errors.
+* **Why divide by 2m?**
+
+  * `1/m` gives average.
+  * `1/2` simplifies derivative calculations in **Gradient Descent**.
 
 ---
 
-### **4. Minimizing the Cost Function**
-- **Approach**: Adjust `θ₀` and `θ₁` to minimize `J(θ₀, θ₁)`.  
-- **Example**:  
-  - **Case 1**: `θ₁ = 1` → Line passes perfectly through points (e.g., `(1,1), (2,2), (3,3)`).  
-    - **Cost**: `J = 0` (optimal).  
-  - **Case 2**: `θ₁ = 0.5` → Line underfits.  
-    - **Cost**: `J ≈ 0.58`.  
-  - **Case 3**: `θ₁ = 0` → Horizontal line (worst fit).  
-    - **Cost**: `J ≈ 2.3`.  
-- **Visualization**: Plotting `J(θ₁)` vs. `θ₁` shows a **convex curve** with a **global minimum** at the best `θ₁`.  
+## 🔹 **6. Error Minimization**
+
+* The aim is to **find values of θ₀ and θ₁** that **minimize** the cost function.
+* This is where **optimization algorithms** like **Gradient Descent** are used.
 
 ---
 
-### **5. Gradient Descent**
-- **Purpose**: Algorithm to find `θ₀` and `θ₁` that minimize `J`.  
-- **Intuition**:  
-  - Start with random `θ₀`, `θ₁`.  
-  - Iteratively update `θ`s by moving in the direction of steepest descent (negative gradient).  
-- **Key Terms**:  
-  - **Global Minima**: Lowest point on the cost function curve (optimal parameters).  
+## 🔹 **7. Visual Intuition with Example**
+
+* Example Dataset: $(1, 1), (2, 2), (3, 3)$
+* Trying different values of θ₁:
+
+  * **θ₁ = 1**: Perfect fit (all points lie on line), **cost = 0**
+  * **θ₁ = 0.5**: Worse fit, cost ≈ 0.58
+  * **θ₁ = 0**: Worst fit, cost ≈ 2.3
 
 ---
 
-### **6. Key Takeaways**
-1. **Hypothesis**: Linear equation (`ŷ = θ₀ + θ₁X`).  
-2. **Cost Function**: Measures prediction error (MSE).  
-3. **Optimization**: Adjust `θ`s to minimize `J` using gradient descent.  
-4. **Intercept (`θ₀`)**: Where the line crosses the y-axis.  
-5. **Slope (`θ₁`)**: Rate of change of `y` w.r.t. `X`.  
+## 🔹 **8. Cost Function Plot (J vs θ₁)**
+
+* Graph of cost function vs slope (θ₁) shows a **U-shaped curve**
+* Lowest point is the **Global Minimum**
+
+  * At this point, **J(θ₀, θ₁)** is the smallest
+  * This value of θ₁ gives the **best fit line**
 
 ---
 
-### **7. Why Linear Regression?**
-- **Simplicity**: Easy to interpret and implement.  
-- **Baseline Model**: Foundation for understanding more complex algorithms.  
-- **Assumption**: Works best when the relationship between `X` and `y` is linear.  
+## 🔹 **9. Gradient Descent (Optimization Approach)**
+
+* **Iteratively updates** θ₀ and θ₁ to move **towards the global minimum**
+* Update rule:
+
+  $$
+  \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)
+  $$
+
+  * $\alpha$: Learning rate
+  * $\frac{\partial}{\partial \theta_j}$: Partial derivative with respect to θ₀ or θ₁
+
+---
+
+## 🔹 **10. Summary of Core Concepts**
+
+| Concept             | Description                                                     |
+| ------------------- | --------------------------------------------------------------- |
+| Hypothesis Function | $h_\theta(x) = \theta_0 + \theta_1 x$                           |
+| Cost Function       | $J(\theta_0, \theta_1) = \frac{1}{2m} \sum (h_\theta(x) - y)^2$ |
+| Intercept (θ₀)      | Value where the line hits the y-axis                            |
+| Slope (θ₁)          | Indicates how fast y increases with x                           |
+| Goal                | Minimize cost function using Gradient Descent                   |
+| Global Minimum      | Best θ values that minimize prediction error                    |
+
+---
+
+## 🔁 **Gradient Descent & Convergence Algorithm in Linear Regression**
+
+### 🧠 **Motivation**
+
+* Instead of **randomly assuming values** of parameters like θ₁ (theta₁), we want a **systematic way** to **reach the global minimum** of the cost function (J).
+* To achieve this, we use an **iterative optimization technique** called **Gradient Descent**.
+
+---
+
+### 📉 **Cost Function Recap**
+
+* The **cost function (J(θ₀, θ₁))** is a **U-shaped curve** (for linear regression).
+* Our goal is to **minimize this cost** by updating θ₀ and θ₁.
+* The **global minimum** is the lowest point on this curve.
+
+---
+
+### 🔁 **Convergence Algorithm (Gradient Descent Update Rule)**
+
+#### 🔹 Repeat Until Convergence:
+
+```text
+θj := θj - α * ∂/∂θj ( J(θ₀, θ₁) )
+```
+
+Where:
+
+* **θj** is the parameter to be updated (e.g., θ₀ or θ₁)
+* **α** is the **learning rate**
+* **∂/∂θj J(θ₀, θ₁)** is the **derivative** (slope) of the cost function with respect to θj
+
+---
+
+### 📐 **Derivative (Slope) Intuition**
+
+* **Positive Slope** → Move **left** (decrease θ)
+* **Negative Slope** → Move **right** (increase θ)
+* The **slope** (gradient) tells us the **direction and magnitude** of update needed.
+
+---
+
+### ⚙️ **Learning Rate (α)**
+
+* Controls the **step size** of each update.
+* **Small α (e.g., 0.01)**:
+
+  * Takes **small steps**, converges slowly, but **stable**.
+* **Large α (e.g., 1)**:
+
+  * May **overshoot** the minimum, possibly **never converging**.
+* **Very Small α**:
+
+  * Model takes **forever to train**.
+
+🔹 **Choose α wisely**: Neither too small nor too large.
+
+---
+
+### 📉 **Global Minimum vs Local Minimum**
+
+* **Linear Regression** cost function is **convex**:
+
+  * It has **only one global minimum**.
+  * No issue of **local minima**.
+
+---
+
+### 📌 **Key Takeaways**
+
+| Concept                          | Insight                                                     |
+| -------------------------------- | ----------------------------------------------------------- |
+| **Gradient Descent**             | Iteratively reduces cost by updating θ using the slope      |
+| **Derivative = Slope**           | Guides the direction of movement towards the minimum        |
+| **Positive Slope**               | θ decreases                                                 |
+| **Negative Slope**               | θ increases                                                 |
+| **Learning Rate (α)**            | Step size for updates; needs tuning                         |
+| **Convergence**                  | Repeat updates until parameters stop changing significantly |
+| **Local Minima (Deep Learning)** | Can trap updates; solved with better optimizers             |
+| **Linear Regression**            | No local minima—only one global minimum                     |
+
+Note - Convergence will stop when we come near local minima
 
 ---
 
