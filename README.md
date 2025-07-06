@@ -404,9 +404,9 @@ Think of the cost function like this:
 
 * The linear regression model assumes the relationship:
 
-  $$
-  h_(\theta)(x) = (\theta)_0 + (\theta)_1 \cdot x
-  $$
+$$
+h_\theta(x) = \theta_0 + \theta_1 \cdot x
+$$
 * Common notations:
 
   * $y = mx + c$
@@ -442,9 +442,9 @@ Think of the cost function like this:
 
 * Formula:
 
-  $$
-  J((\theta)_0, (\theta)_1) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
-  $$
+$$
+J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
+$$
 
 ### Key Points:
 
