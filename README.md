@@ -150,6 +150,93 @@ In case of Unsupervised learning, there is no dependent variable (output)
 
 - Clustering :- In case of clustering, we used to group similar data. Example - Ad-Marketing uses clustering through Customer Segmentation
 
+---
+
+### 📌 What is **Linear Regression**?
+
+**Linear Regression** is a **supervised machine learning algorithm** used for **predicting a continuous numerical value** based on one or more input features.
+
+It finds the **best-fitting straight line** (also called the **regression line**) through a set of data points. The general equation for a simple linear regression is:
+
+$$
+y = mx + c
+$$
+
+Where:
+
+* $y$ = predicted value (dependent variable)
+* $x$ = input feature (independent variable)
+* $m$ = slope of the line (how much $y$ changes for a unit change in $x$)
+* $c$ = intercept (value of $y$ when $x = 0$)
+
+For **multiple linear regression**, the equation extends to:
+
+$$
+y = w_1x_1 + w_2x_2 + \dots + w_nx_n + b
+$$
+
+---
+
+### 🎯 Why Do We Need Linear Regression?
+
+Linear Regression is useful for:
+
+#### ✅ 1. **Prediction**
+
+* Predict house prices, sales, or future trends based on input features (e.g., size, location).
+
+#### ✅ 2. **Understanding Relationships**
+
+* Analyze how different variables relate to one another.
+
+  > Example: How does experience affect salary?
+
+#### ✅ 3. **Baseline Model**
+
+* Acts as a simple and fast **benchmark model** before using complex algorithms.
+
+#### ✅ 4. **Interpretability**
+
+* The coefficients (slopes) in the regression equation give insight into how much each feature impacts the output.
+
+---
+
+### 🧠 Real-World Examples
+
+1. **House Price Prediction**
+
+   * Inputs: Size, number of rooms, location
+   * Output: Price of the house
+
+2. **Stock Market Forecasting**
+
+   * Inputs: Previous stock values, volume traded
+   * Output: Next day's stock price
+
+3. **Marketing**
+
+   * Inputs: Ad budget on platforms
+   * Output: Sales/revenue generated
+
+---
+
+### 📉 Visualization (Intuition)
+
+Given a scatter plot of points, Linear Regression finds the "best line" that minimizes the error (distance) between the line and each point (using **least squares** method).
+
+---
+
+### Summary
+
+| Aspect      | Details                                  |
+| ----------- | ---------------------------------------- |
+| Type        | Supervised learning                      |
+| Output      | Continuous value                         |
+| Equation    | $y = mx + c$ or $y = w_1x_1 + \dots + b$ |
+| Use Cases   | Forecasting, Trend analysis, Prediction  |
+| Key Concept | Finding the best-fitting line            |
+
+
 ## Linear Regression Algorithm (00:18:14)
 ![Linear Regression](/notes/01_Linear_Regression_1.1.png)
 
@@ -157,4 +244,322 @@ In case of Unsupervised learning, there is no dependent variable (output)
 
 In case of Linear Regression we try to create a model with the help of training dataset, where the model (hypothesis) takes new age (independent feature) and gives the output of weight and with the help of performance metrics we try to verify whether that model is performing well or not.
 
-![Equation of a straight line](/notes/01_Linear_Regression_Equation_of_Straight_line_1.2.png)
+![Equation of a straight line](/notes/01_Linear_Regression_1.3.png)
+
+---
+
+### ✅ 1. **`y = mx + c`** (Standard Form in Algebra)
+
+* **Used in:** Basic mathematics (algebra)
+* **Meaning:**
+
+  * `y` is the dependent variable.
+  * `x` is the independent variable.
+  * `m` is the **slope** (rate of change).
+  * `c` is the **y-intercept** (value of `y` when `x = 0`).
+
+#### 📌 Example:
+
+Suppose we have:
+`y = 2x + 3`
+
+* This means the line has a slope `m = 2` and crosses the y-axis at `c = 3`.
+* At `x = 0`: `y = 2(0) + 3 = 3`
+* At `x = 1`: `y = 2(1) + 3 = 5`
+
+---
+
+### ✅ 2. **`y = β₀ + β₁x`** (Statistical/Regression Form)
+
+* **Used in:** Simple Linear Regression (Statistics / Machine Learning)
+* **Meaning:**
+
+  * `β₀` is the **intercept** (like `c`)
+  * `β₁` is the **coefficient** (slope, like `m`)
+  * `x` is the input variable (independent variable)
+  * `y` is the predicted value (dependent variable)
+
+#### 📌 Example:
+
+Let’s say:
+`y = 1.5 + 0.8x`
+
+* `β₀ = 1.5`, so when `x = 0`, `y = 1.5`
+* `β₁ = 0.8`, which means for every increase in `x` by 1, `y` increases by 0.8.
+
+---
+
+### ✅ 3. **`hθ(x) = θ₀ + θ₁x`** (Hypothesis Function in Machine Learning)
+
+* **Used in:** Hypothesis function in **Linear Regression** (ML context)
+* **Meaning:**
+
+  * `θ₀` is the bias term (intercept)
+  * `θ₁` is the weight for the input feature `x`
+  * `hθ(x)` means: the hypothesis function `h` parameterized by `θ`
+
+#### 📌 Example:
+
+Suppose we have:
+`hθ(x) = 4 + 2x`
+
+* If `x = 1`: `hθ(1) = 4 + 2(1) = 6`
+* If `x = 3`: `hθ(3) = 4 + 2(3) = 10`
+
+---
+
+### 🎯 Summary
+
+| Form               | Common In             | Formula              | Parameters |
+| ------------------ | --------------------- | -------------------- | ---------- |
+| `y = mx + c`       | Algebra               | Slope-Intercept Form | `m`, `c`   |
+| `y = β₀ + β₁x`     | Statistics/Regression | Linear Regression    | `β₀`, `β₁` |
+| `hθ(x) = θ₀ + θ₁x` | Machine Learning      | Hypothesis Function  | `θ₀`, `θ₁` |
+
+They all represent the **same underlying linear relationship**, just expressed differently based on context.
+
+---
+
+![Cost function in Linear Regression](/notes/01_Linear_Regression_1.6.png)
+
+In Linear Regression, the cost function measures how well your model's predictions match the actual data. It tells you how "wrong" the model is — and we try to minimize this cost to make better predictions.
+
+
+### 💡 What is a Cost Function?
+
+A **cost function** is a mathematical formula that calculates the **error** between predicted values and actual values.
+
+For **Linear Regression**, the most commonly used cost function is:
+
+### ✅ Mean Squared Error (MSE) or Squared Error function:
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)^2
+$$
+
+---
+
+### 🔍 Explanation of Terms:
+
+* `m` = number of training examples
+* $h_\theta(x^{(i)})$ = predicted value (hypothesis) for the i-th example
+* $y^{(i)}$ = actual value for the i-th example
+* $\theta_0, \theta_1$ = model parameters (weights and bias)
+
+The goal of training is to **find the values of** $\theta_0$ and $\theta_1$ that **minimize** $J(\theta)$.
+
+---
+
+### 📌 Example:
+
+Let's take a small dataset:
+
+| x (input) | y (actual) |
+| --------- | ---------- |
+| 1         | 2          |
+| 2         | 3          |
+| 3         | 5          |
+
+Assume your model is:
+
+$$
+h_\theta(x) = \theta_0 + \theta_1 x = 0.5 + 1x
+$$
+
+Now compute predicted values:
+
+| x | y (actual) | hθ(x) = 0.5 + 1x | Error (hθ(x) - y) | Squared Error |
+| - | ---------- | ---------------- | ----------------- | ------------- |
+| 1 | 2          | 1.5              | -0.5              | 0.25          |
+| 2 | 3          | 2.5              | -0.5              | 0.25          |
+| 3 | 5          | 3.5              | -1.5              | 2.25          |
+
+Now plug into cost function:
+
+$$
+J(\theta) = \frac{1}{2 \cdot 3}(0.25 + 0.25 + 2.25) = \frac{1}{6}(2.75) \approx 0.458
+$$
+
+So, the **cost** is around **0.458**. If you change the model (adjust θ₀ and θ₁), your cost will change — and your goal is to **minimize** it!
+
+---
+
+### 🧠 Intuition
+
+Think of the cost function like this:
+
+> The lower the cost, the better your model is fitting the data.
+
+---
+
+### **1. Linear Regression Problem Statement**
+- **Goal**: Predict a continuous output (dependent variable `y`) based on one/more input features (independent variable `X`).  
+- **Example**: Predict `weight (y)` given `age (X)` using training data.  
+- **Model**: A linear relationship between `X` and `y` is assumed:  
+  $$
+  y = \theta_0 + \theta_1 X \quad \text{(Hypothesis Function)}
+  $$
+  - **Notations**:  
+    - `θ₀` (Theta₀): **Intercept** (value of `y` when `X=0`).  
+    - `θ₁` (Theta₁): **Slope/Coefficient** (change in `y` per unit change in `X`).  
+
+---
+
+### **2. Best Fit Line**
+- **Objective**: Find the line that **minimizes the error** between predicted (`ŷ`) and actual (`y`) values.  
+- **Error Metric**: **Sum of squared vertical distances** (residuals) between data points and the line.  
+
+---
+
+### **3. Cost Function (J)**
+- **Purpose**: Quantify how "wrong" the current line is.  
+- **Equation (Mean Squared Error - MSE)**:
+  $$
+  J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
+  $$
+  - `m`: Number of training examples.  
+  - `hθ(xⁱ)`: Predicted value for the `i-th` input.  
+  - **Why `1/2m`**:  
+    - `1/m`: Averages the error over all examples.  
+    - `1/2`: Simplifies derivative calculations (cancels the `2` from the square’s derivative).  
+
+---
+
+### **4. Minimizing the Cost Function**
+- **Approach**: Adjust `θ₀` and `θ₁` to minimize `J(θ₀, θ₁)`.  
+- **Example**:  
+  - **Case 1**: `θ₁ = 1` → Line passes perfectly through points (e.g., `(1,1), (2,2), (3,3)`).  
+    - **Cost**: `J = 0` (optimal).  
+  - **Case 2**: `θ₁ = 0.5` → Line underfits.  
+    - **Cost**: `J ≈ 0.58`.  
+  - **Case 3**: `θ₁ = 0` → Horizontal line (worst fit).  
+    - **Cost**: `J ≈ 2.3`.  
+- **Visualization**: Plotting `J(θ₁)` vs. `θ₁` shows a **convex curve** with a **global minimum** at the best `θ₁`.  
+
+---
+
+### **5. Gradient Descent**
+- **Purpose**: Algorithm to find `θ₀` and `θ₁` that minimize `J`.  
+- **Intuition**:  
+  - Start with random `θ₀`, `θ₁`.  
+  - Iteratively update `θ`s by moving in the direction of steepest descent (negative gradient).  
+- **Key Terms**:  
+  - **Global Minima**: Lowest point on the cost function curve (optimal parameters).  
+
+---
+
+### **6. Key Takeaways**
+1. **Hypothesis**: Linear equation (`ŷ = θ₀ + θ₁X`).  
+2. **Cost Function**: Measures prediction error (MSE).  
+3. **Optimization**: Adjust `θ`s to minimize `J` using gradient descent.  
+4. **Intercept (`θ₀`)**: Where the line crosses the y-axis.  
+5. **Slope (`θ₁`)**: Rate of change of `y` w.r.t. `X`.  
+
+---
+
+### **7. Why Linear Regression?**
+- **Simplicity**: Easy to interpret and implement.  
+- **Baseline Model**: Foundation for understanding more complex algorithms.  
+- **Assumption**: Works best when the relationship between `X` and `y` is linear.  
+
+---
+
+### **1. Core Problem with Manual Updates**
+- Manually testing values (e.g., `θ₁ = 1, 0.5, 0`) is inefficient and impractical for complex models.  
+- **Goal**: Automatically converge to the **global minimum** of the cost function `J(θ₀, θ₁)`.
+
+---
+
+### **2. Gradient Descent: The Convergence Algorithm**
+- **Objective**: Iteratively update parameters (`θ₀`, `θ₁`) to minimize `J(θ₀, θ₁)`.  
+- **Update Rule**:  
+  $$
+  \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1) \quad \text{(for } j=0,1\text{)}
+  $$
+  - **Key Components**:  
+    1. **Partial Derivative (`∂J/∂θⱼ`)**:
+       - Measures the slope of `J(θ₀, θ₁)` at a given `θⱼ`.  
+       - Indicates the direction of steepest ascent.  
+    2. **Learning Rate (`α`)**:
+       - Controls the step size during updates.  
+       - **Too small**: Slow convergence.  
+       - **Too large**: Risk of overshooting the minimum.  
+
+---
+
+### **3. How Gradient Descent Works**
+#### **Intuition**:
+- **Positive Slope (Right Side of Global Minima)**:  
+  - Derivative is **positive** → `θⱼ` decreases (moves left toward minima).  
+  - Example: `θ₁ := θ₁ - α·(positive_value)`.  
+- **Negative Slope (Left Side of Global Minima)**:  
+  - Derivative is **negative** → `θⱼ` increases (moves right toward minima).  
+  - Example: `θ₁ := θ₁ - α·(negative_value) = θ₁ + α·|value|`.  
+
+#### **Visualization**:
+- **Cost Function Curve**: Convex shape (bowl-shaped) for linear regression.  
+- **Parameter Updates**: "Rolling downhill" until the slope (derivative) nears zero (convergence).  
+
+---
+
+### **4. Learning Rate (`α`)**
+- **Role**: Determines the step size for each iteration.  
+- **Trade-offs**:  
+  - **Small `α` (e.g., 0.01)**:  
+    - Slow but precise convergence.  
+    - Risk of getting stuck in shallow regions.  
+  - **Large `α` (e.g., 0.5)**:  
+    - Faster updates but may overshoot the global minimum.  
+    - Can diverge (fail to converge).  
+- **Typical Choice**: Start with `α = 0.01` and tune experimentally.  
+
+---
+
+### **5. Local Minima in Linear Regression**
+- **Linear Regression Cost Function**: Always **convex** (no local minima, only one global minimum).  
+- **Deep Learning Context**:  
+  - Non-convex cost functions (e.g., neural networks) may have local minima.  
+  - **Solutions**: Advanced optimizers (Adam, RMSprop) to escape local minima.  
+
+---
+
+### **6. Key Takeaways**
+1. **Gradient Descent**:  
+   - Automates parameter updates using derivatives.  
+   - Guaranteed to converge to the global minimum for convex functions.  
+2. **Derivative (`∂J/∂θⱼ`)**:  
+   - Indicates update direction (sign) and magnitude (value).  
+3. **Learning Rate (`α`)**:  
+   - Critical hyperparameter; must be tuned carefully.  
+4. **Convergence**:  
+   - Stop when updates become negligible (derivative ≈ 0).  
+
+---
+
+### **7. Practical Example**
+- **Scenario**: Fit a line to predict `weight (y)` from `age (X)`.  
+- **Steps**:  
+  1. Initialize `θ₀ = 0`, `θ₁ = 0`, `α = 0.01`.  
+  2. Compute derivatives:  
+     - `∂J/∂θ₀ = (1/m) Σ(hθ(xⁱ) - yⁱ)`.  
+     - `∂J/∂θ₁ = (1/m) Σ(hθ(xⁱ) - yⁱ)·xⁱ`.  
+  3. Update parameters until `J(θ₀, θ₁)` stabilizes.  
+
+---
+
+### **8. Common Pitfalls & Solutions**
+- **Oscillations/Diverge**: Reduce `α`.  
+- **Slow Convergence**: Increase `α` or use feature scaling.  
+- **Local Minima (Non-linear models)**: Use advanced optimizers.  
+
+---
+
+### **9. Summary of Key Pointers**
+- **Convergence Algorithm**: `θⱼ := θⱼ - α·(∂J/∂θⱼ)`.  
+- **Derivative**: Guides direction and magnitude of updates.  
+- **Learning Rate**: Balances speed and stability.  
+- **Global Minima**: Guaranteed for linear regression’s convex cost function.  
+
+---
+
+## start from (49:12)
