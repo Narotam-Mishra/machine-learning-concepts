@@ -1029,3 +1029,142 @@ Even though R² increased to 91%, **Adjusted R² dropped**, signaling that **gen
 ---
 
 ## Ridge And Lasso Regression Algorithms (01:07:14)
+
+**Overfitting** - When Model performs well with training data but failed to perform well with test data.
+
+**Underfitting** - When Model accuracy is bad with training data as well as model accuracy is also bad with test data then this scenario is known as Underfitting.
+
+---
+
+## ✅ **1. Linear Regression Overview**
+
+* A **supervised learning algorithm** used for **predicting continuous output**.
+* The hypothesis function (prediction equation):
+
+$$
+h_\theta(x) = \theta_0 + \theta_1 x
+$$
+* Goal: Minimize the difference between predicted and actual values.
+
+---
+
+## ✅ **2. Cost Function (Mean Squared Error - MSE)**
+
+* Measures error between predicted and actual values:
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
+$$
+* Convex in nature ⇒ only one global minimum.
+
+---
+
+## ✅ **3. Gradient Descent**
+
+* Optimization technique to **minimize cost function**.
+* Iteratively updates θ values using derivatives:
+
+$$
+\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+$$
+* **α**: learning rate.
+* **Convergence** stops when cost function change is negligible.
+
+---
+
+## ✅ **4. Overfitting vs Underfitting vs Generalization**
+
+| **Scenario**          | **Training Accuracy** | **Test Accuracy** | **Bias** | **Variance** | **Conclusion**                                      |
+| --------------------- | --------------------- | ----------------- | -------- | ------------ | --------------------------------------------------- |
+| **Overfitting**       | High                  | Low               | Low      | High         | Model memorized training data, poor on unseen data. |
+| **Underfitting**      | Low                   | Low               | High     | High         | Model failed to learn patterns at all.              |
+| **Generalized Model** | High (\~)             | High (\~)         | Low      | Low          | Balanced learning, good generalization.             |
+
+### ➤ **Key Points:**
+
+* **Bias** = error on training data.
+* **Variance** = sensitivity to test/unseen data.
+* Generalization is the ideal state of a model.
+
+---
+
+## ✅ **5. R² and Adjusted R²**
+
+* **R² (Coefficient of Determination)**: Proportion of variance explained by the model.
+
+$$
+R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}}
+$$
+* **Adjusted R²**: Corrects R² for multiple features:
+
+$$
+\text{Adjusted } R^2 = 1 - \left(1 - R^2\right)\frac{n - 1}{n - k - 1}
+$$
+
+  Where `n` = #samples, `k` = #features
+
+---
+
+## ✅ **6. Regularization**
+
+Used to **prevent overfitting** by **penalizing large weights (θ values)**.
+
+### ➤ **Ridge Regression (L2 Regularization)**
+
+* Adds squared penalty term to cost function:
+
+$$
+J(\theta) = \frac{1}{2m} \sum (y^{(i)} - h_\theta(x^{(i)}))^2 + \lambda \sum \theta_j^2
+$$
+* Penalizes **large θ values**, smoothens the curve → better generalization.
+
+### ➤ **Intuition:**
+
+* Keeps the slope of the line from becoming too steep (which often causes overfitting).
+* Forces model to **not fit training data perfectly**, hence improving performance on test data.
+
+### ➤ **Key Term:**
+
+* **λ (lambda)**: regularization strength (hyperparameter)
+
+  * High λ → more penalty → can cause underfitting
+  * Low λ → less penalty → can still overfit
+
+---
+
+## ✅ **7. Convergence & Iterations**
+
+* **Convergence**: when updates to θ become minimal, cost function stabilizes.
+* **Iteration**: each update step in gradient descent.
+* More iterations → better approximation (up to a point).
+
+---
+
+## ✅ **8. Important Intuitions & Tips**
+
+* A perfect zero cost (J(θ) = 0) often signals **overfitting**, not perfection.
+* **Training vs Test Data:**
+
+  * High training accuracy and low test accuracy ⇒ Overfitting.
+  * Low both ⇒ Underfitting.
+* **Slope (θ₁) steepness**: Steeper slope can mean high variance.
+* **Hyperparameters** like learning rate (α), λ (in Ridge), and #iterations directly affect performance.
+* Regularization encourages **simpler models** that **generalize better**.
+
+---
+
+## ✅ **9. Visual Understanding**
+
+* Overfitting: curve fits all training points exactly ⇒ high test error.
+* Underfitting: model doesn’t capture pattern at all ⇒ high training and test error.
+* Generalized: balances fit on training & test data ⇒ best performance.
+
+---
+
+## ✅ Summary in One Line:
+
+> **Linear regression aims to learn the best-fit line minimizing error. But without regularization, it risks overfitting; using techniques like Ridge (L2) ensures better generalization.**
+
+---
+
+## start from (01:23:54)
