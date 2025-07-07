@@ -82,7 +82,7 @@ In case of Unsupervised learning, there is no dependent variable (output)
 - If predicting **weight category (e.g., underweight/healthy/overweight)** → **Classification**.  
 
 - With respect to any kind of problem statement that we solve, the majority of the business use cases will be fall under two sections :-
-1. Supervised ML :- In case, we will mainly solve two major problem statements 
+1. Supervised ML :- In this case, we will mainly solve two major problem statements 
     - Regression problem
     - Classification 
 
@@ -291,12 +291,15 @@ Let’s say:
 
 ### ✅ 3. **`hθ(x) = θ₀ + θ₁x`** (Hypothesis Function in Machine Learning)
 
+In Linear Regression, the hypothesis function is the mathematical model that we use to predict the output (`y`) from a given input (`x`). The hypothesis function estimates the relationship between input and output. It tries to draw the **best-fit straight line** through the training data.
+
 * **Used in:** Hypothesis function in **Linear Regression** (ML context)
 * **Meaning:**
 
   * `θ₀` is the bias term (intercept)
-  * `θ₁` is the weight for the input feature `x`
-  * `hθ(x)` means: the hypothesis function `h` parameterized by `θ`
+  * `θ₁` is the weight for the input feature `x` / slope (coefficient)
+  * `hθ(x)` means: the hypothesis function `h` parameterized by `θ` / predicted value (output)
+  * `x` Input feature
 
 #### 📌 Example:
 
@@ -478,6 +481,7 @@ $$
   * **θ₁ = 0**: Worst fit, cost ≈ 2.3
 
 ---
+![Graph of cost function vs slope (θ₁)](/notes/01_Linear_Regression_1.11.png)
 
 ## 🔹 **8. Cost Function Plot (J vs θ₁)**
 
@@ -494,9 +498,9 @@ $$
 * **Iteratively updates** θ₀ and θ₁ to move **towards the global minimum**
 * Update rule:
 
-  $$
-  \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)
-  $$
+$$
+\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)
+$$
 
   * $\alpha$: Learning rate
   * $\frac{\partial}{\partial \theta_j}$: Partial derivative with respect to θ₀ or θ₁
