@@ -937,10 +937,6 @@ $$
 
 ---
 
-Here's a **concise summary** of the concepts you shared related to **R² (R-Squared)** and **Adjusted R²**, particularly in the context of **Linear Regression**, along with **key pointers**:
-
----
-
 ## 🔍 **R² (R-Squared) — Coefficient of Determination**
 
 ### ✅ **Definition:**
