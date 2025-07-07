@@ -716,11 +716,11 @@ $$
 \frac{\partial J}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
 $$
 
-#### **Maths behind Derivatives for Gradient Descent Updates** 
+### **Maths behind Derivatives for Gradient Descent Updates** 
 
 ---
 
-##### 🔶 1. **Cost Function** (Mean Squared Error):
+#### 🔶 1. **Cost Function** (Mean Squared Error):
 
 $$
 J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right)^2
@@ -734,7 +734,7 @@ Where:
 
 ---
 
-##### 🔶 2. **Goal: Compute the partial derivative** of the cost function w\.r.t. $\theta_j$
+#### 🔶 2. **Goal: Compute the partial derivative** of the cost function w\.r.t. $\theta_j$
 
 We want:
 
@@ -750,7 +750,7 @@ $$
 
 ---
 
-##### 🔶 3. **Use the chain rule** to differentiate:
+#### 🔶 3. **Use the chain rule** to differentiate:
 
 Let’s define:
 
@@ -778,7 +778,7 @@ $$
 
 ---
 
-##### 🔶 4. **Now compute $\frac{\partial E^{(i)}}{\partial \theta_j}$**
+#### 🔶 4. **Now compute $\frac{\partial E^{(i)}}{\partial \theta_j}$**
 
 Recall:
 
@@ -861,27 +861,6 @@ $$
 \frac{\partial E^{(i)}}{\partial \theta_1} = x^{(i)}
 $$
 
----
-
-### 🔄 Plug these back into:
-
-$$
-\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m} \sum_{i=1}^{m} E^{(i)} \cdot \frac{\partial E^{(i)}}{\partial \theta_j}
-$$
-
-So:
-
-* For $\theta_0$:
-
-  $$
-  \frac{1}{m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right) \cdot 1
-  $$
-
-* For $\theta_1$:
-
-  $$
-  \frac{1}{m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right) \cdot x^{(i)}
-  $$
 
 > We differentiated the error term $E^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}$ with respect to both $\theta_0$ and $\theta_1$, applying basic derivative rules. These derivatives are essential components of the gradient of the cost function.
 
