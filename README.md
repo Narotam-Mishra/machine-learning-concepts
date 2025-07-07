@@ -937,4 +937,99 @@ $$
 
 ---
 
-## start from (55:07)
+Here's a **concise summary** of the concepts you shared related to **R² (R-Squared)** and **Adjusted R²**, particularly in the context of **Linear Regression**, along with **key pointers**:
+
+---
+
+## 🔍 **R² (R-Squared) — Coefficient of Determination**
+
+### ✅ **Definition:**
+
+R² measures how well the regression model explains the variability of the dependent variable `y`.
+
+### ✅ **Formula:**
+
+$$
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+$$
+
+* $\hat{y}_i$: Predicted value from model
+* $y_i$: Actual value
+* $\bar{y}$: Mean of actual `y` values
+
+### ✅ **Interpretation:**
+
+* R² = 0 → Model explains none of the variance
+* R² = 1 → Model perfectly explains the variance
+* R² can be **negative** → Indicates the model is worse than just using the mean ($\bar{y}$).
+
+### ✅ **Behavior:**
+
+* **Always increases** or stays the same when you add more features — even irrelevant ones.
+
+---
+
+## 🎯 **Adjusted R² — Penalized R²**
+
+### ✅ **Purpose:**
+
+To correct the flaw of R² increasing with added features — by penalizing the model for **adding non-useful features**.
+
+### ✅ **Formula:**
+
+$$
+R^2_{\text{adj}} = 1 - \left(1 - R^2\right) \cdot \frac{n - 1}{n - p - 1}
+$$
+
+* $n$: Number of observations (data points)
+* $p$: Number of predictors/features
+
+### ✅ **Behavior:**
+
+* **Increases** only if the new feature improves the model more than by chance.
+* **Decreases** if the feature is not useful.
+* **Always ≤ R²**
+
+---
+
+## 📌 **Key Insights & Takeaways**
+
+| Concept                               | R² | Adjusted R² |
+| ------------------------------------- | -- | ----------- |
+| Measures model fit                    | ✅  | ✅           |
+| Always increases with added features  | ✅  | ❌           |
+| Penalizes non-informative features    | ❌  | ✅           |
+| Can be negative                       | ✅  | ✅           |
+| Better for multiple linear regression | ❌  | ✅           |
+| Preferred for feature comparison      | ❌  | ✅           |
+
+---
+
+## 🧠 **Examples and Scenarios**
+
+* You have features:
+  `bedrooms` → good predictor
+  `location` → strong predictor
+  `gender of occupant` → irrelevant to house price
+
+| Features Used | R² (%) | Adjusted R² (%) |
+| ------------- | ------ | --------------- |
+| Bedrooms only | 85     | 84              |
+| + Location    | 90     | 89              |
+| + Gender      | 91     | 82 (**↓**)      |
+
+Even though R² increased to 91%, **Adjusted R² dropped**, signaling that **gender** was not a helpful feature.
+
+---
+
+## 🎤 **Common Interview Q\&A**
+
+**Q: Which is always greater — R² or Adjusted R²?**
+**A: R² is always ≥ Adjusted R²**
+
+**Q: Why use Adjusted R² in feature selection?**
+**A: To avoid overfitting by penalizing irrelevant predictors.**
+
+---
+
+## Ridge And Lasso Regression Algorithms (01:07:14)
