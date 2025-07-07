@@ -716,13 +716,11 @@ $$
 \frac{\partial J}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
 $$
 
-**Maths behind Derivatives for Gradient Descent Updates**
-
-Let's go **step by step** to understand how the **differentiation of the cost function** works in **Linear Regression**.
+#### **Maths behind Derivatives for Gradient Descent Updates** 
 
 ---
 
-## 🔶 1. **Cost Function** (Mean Squared Error):
+##### 🔶 1. **Cost Function** (Mean Squared Error):
 
 $$
 J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right)^2
@@ -736,7 +734,7 @@ Where:
 
 ---
 
-## 🔶 2. **Goal: Compute the partial derivative** of the cost function w\.r.t. $\theta_j$
+##### 🔶 2. **Goal: Compute the partial derivative** of the cost function w\.r.t. $\theta_j$
 
 We want:
 
@@ -752,7 +750,7 @@ $$
 
 ---
 
-## 🔶 3. **Use the chain rule** to differentiate:
+##### 🔶 3. **Use the chain rule** to differentiate:
 
 Let’s define:
 
@@ -780,7 +778,7 @@ $$
 
 ---
 
-## 🔶 4. **Now compute $\frac{\partial E^{(i)}}{\partial \theta_j}$**
+##### 🔶 4. **Now compute $\frac{\partial E^{(i)}}{\partial \theta_j}$**
 
 Recall:
 
@@ -791,9 +789,9 @@ So:
 * $\frac{\partial E^{(i)}}{\partial \theta_0} = 1$
 * $\frac{\partial E^{(i)}}{\partial \theta_1} = x^{(i)}$
 
-**Differntiation step by step** : Step 4 in details
+### **Differntiation step by step** : Step 4 in details
 
-## 🔶 Step 4: Compute
+#### 🔶 Step 4: Compute
 
 $$
 \frac{\partial E^{(i)}}{\partial \theta_j}
