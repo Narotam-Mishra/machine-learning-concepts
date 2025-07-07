@@ -600,8 +600,364 @@ Where:
 | **Local Minima (Deep Learning)** | Can trap updates; solved with better optimizers             |
 | **Linear Regression**            | No local minima—only one global minimum                     |
 
-Note - Convergence will stop when we come near local minima
+---
+
+### 🔵 "Cost Function is Convex" — What Does It Mean?
+
+A **convex function** is a function that curves upwards like a **U-shape**. It has the following properties:
+
+* ✅ Only **one global minimum** (the lowest point).
+* ❌ **No local minima** (no other dips or valleys).
+
+So when we try to **minimize the cost** using an optimization algorithm (like gradient descent), we are guaranteed to reach the **global minimum** — the point where our model performs best.
 
 ---
 
-## start from (49:12)
+### 📈 Visual Intuition:
+
+Imagine a bowl. The bottom of the bowl is the **global minimum**. No matter where you start rolling a ball inside the bowl, it will always end up at the bottom.
+
+That’s what happens with the **cost function in linear regression** — it’s shaped like that bowl.
+
+---
+
+### 🧠 Example:
+
+Let’s say you’re trying different values of $\theta_1$ (the slope) while keeping $\theta_0$ fixed.
+
+You compute cost $J(\theta_1)$ for each value and plot the curve.
+
+You get something like this:
+
+```
+Cost (J)
+ |
+ |                ●
+ |            ●
+ |        ●
+ |    ●
+ |●_____________________ θ₁ (slope)
+```
+
+This is a **convex curve** — a smooth U-shape. The **lowest point** gives the **best value** of $\theta_1$ that minimizes the prediction error.
+
+---
+
+### 🔑 Why It Matters:
+
+In some machine learning algorithms (like neural networks), the cost function **is not convex** — it can have **many local minima**, so optimization becomes tricky.
+
+But in **linear regression**, the cost function is **always convex**, so:
+
+* ✔ We can safely use gradient descent.
+* ✔ We’ll always converge to the best solution.
+* ✔ No fear of getting stuck in a bad minimum.
+
+---
+
+### ✅ Summary:
+
+> When we say “**Linear Regression cost function is convex**,” we mean it has a nice U-shape that ensures:
+>
+> * There is **only one best solution** (global minimum).
+> * Optimization (e.g., gradient descent) is **simple and reliable**.
+
+
+🔸 Convergence stops when gradient descent reaches (or comes very close to) the global minimum of the cost function.
+
+---
+
+### ✅ **1. Gradient Descent Algorithm**
+
+**Purpose:**
+To minimize the cost function (loss) by iteratively updating the model parameters (θ₀, θ₁).
+
+#### 🔁 Repeat until convergence:
+
+Update each parameter `θⱼ` as:
+
+$$
+\theta_j := \theta_j - \alpha \cdot \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)
+$$
+
+Where:
+
+* $\alpha$ = learning rate (e.g., 0.01 or 0.1)
+* $J(\theta_0, \theta_1)$ = cost function
+
+---
+
+### ✅ **2. Cost Function (Mean Squared Error)**
+
+Used to measure the performance of the hypothesis:
+
+$$
+J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
+$$
+
+Where:
+
+* $m$ = number of training examples
+* $h_\theta(x) = \theta_0 + \theta_1 \cdot x$
+
+---
+
+### ✅ **3. Derivatives for Gradient Descent Updates**
+
+#### ➤ Derivative w\.r.t. $\theta_0$:
+
+$$
+\frac{\partial J}{\partial \theta_0} = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})
+$$
+
+#### ➤ Derivative w\.r.t. $\theta_1$:
+
+$$
+\frac{\partial J}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
+$$
+
+**Maths behind Derivatives for Gradient Descent Updates**
+
+Let's go **step by step** to understand how the **differentiation of the cost function** works in **Linear Regression**.
+
+---
+
+## 🔶 1. **Cost Function** (Mean Squared Error):
+
+$$
+J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right)^2
+$$
+
+Where:
+
+* $h_\theta(x^{(i)}) = \theta_0 + \theta_1 x^{(i)}$
+* $y^{(i)}$ is the actual output for the $i^\text{th}$ training example
+* $m$ is the number of training examples
+
+---
+
+## 🔶 2. **Goal: Compute the partial derivative** of the cost function w\.r.t. $\theta_j$
+
+We want:
+
+$$
+\frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)
+$$
+
+Let’s expand the cost function inside the derivative:
+
+$$
+\frac{\partial}{\partial \theta_j} \left[ \frac{1}{2m} \sum_{i=1}^{m} \left( \theta_0 + \theta_1 x^{(i)} - y^{(i)} \right)^2 \right]
+$$
+
+---
+
+## 🔶 3. **Use the chain rule** to differentiate:
+
+Let’s define:
+
+$$
+E^{(i)} = \left( h_\theta(x^{(i)}) - y^{(i)} \right) = \left( \theta_0 + \theta_1 x^{(i)} - y^{(i)} \right)
+$$
+
+Now the cost function becomes:
+
+$$
+J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^{m} \left( E^{(i)} \right)^2
+$$
+
+Now, apply the derivative:
+
+$$
+\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} 2 E^{(i)} \cdot \frac{\partial E^{(i)}}{\partial \theta_j}
+$$
+
+Cancel out 2 from numerator and denominator:
+
+$$
+= \frac{1}{m} \sum_{i=1}^{m} E^{(i)} \cdot \frac{\partial E^{(i)}}{\partial \theta_j}
+$$
+
+---
+
+## 🔶 4. **Now compute $\frac{\partial E^{(i)}}{\partial \theta_j}$**
+
+Recall:
+
+* $E^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}$
+
+So:
+
+* $\frac{\partial E^{(i)}}{\partial \theta_0} = 1$
+* $\frac{\partial E^{(i)}}{\partial \theta_1} = x^{(i)}$
+
+**Differntiation step by step** : Step 4 in details
+
+## 🔶 Step 4: Compute
+
+$$
+\frac{\partial E^{(i)}}{\partial \theta_j}
+$$
+
+We need this as part of the chain rule used in the derivative of the cost function.
+
+### ✅ Recall:
+
+We defined the error for the $i^\text{th}$ training example as:
+
+$$
+E^{(i)} = h_\theta(x^{(i)}) - y^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}
+$$
+
+We want to compute:
+
+$$
+\frac{\partial}{\partial \theta_j} E^{(i)} \quad \text{(where } j = 0 \text{ or } 1\text{)}
+$$
+
+---
+
+### 📌 Case 1: $\theta_j = \theta_0$
+
+$$
+E^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}
+$$
+
+Differentiate with respect to $\theta_0$:
+
+$$
+\frac{\partial E^{(i)}}{\partial \theta_0} = \frac{\partial}{\partial \theta_0}(\theta_0 + \theta_1 x^{(i)} - y^{(i)}) = 1 + 0 - 0 = \boxed{1}
+$$
+
+* $\theta_0$ → derivative is 1
+* $\theta_1 x^{(i)}$ → constant w\.r.t $\theta_0$, so derivative is 0
+* $y^{(i)}$ → actual value, constant, so derivative is 0
+
+---
+
+### 📌 Case 2: $\theta_j = \theta_1$
+
+$$
+E^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}
+$$
+
+Differentiate with respect to $\theta_1$:
+
+$$
+\frac{\partial E^{(i)}}{\partial \theta_1} = \frac{\partial}{\partial \theta_1}(\theta_0 + \theta_1 x^{(i)} - y^{(i)}) = 0 + x^{(i)} - 0 = \boxed{x^{(i)}}
+$$
+
+* $\theta_0$ → derivative is 0
+* $\theta_1 x^{(i)}$ → derivative is $x^{(i)}$
+* $y^{(i)}$ → constant → derivative is 0
+
+---
+
+### ✅ So final results:
+
+$$
+\frac{\partial E^{(i)}}{\partial \theta_0} = 1
+$$
+
+$$
+\frac{\partial E^{(i)}}{\partial \theta_1} = x^{(i)}
+$$
+
+---
+
+### 🔄 Plug these back into:
+
+$$
+\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m} \sum_{i=1}^{m} E^{(i)} \cdot \frac{\partial E^{(i)}}{\partial \theta_j}
+$$
+
+So:
+
+* For $\theta_0$:
+
+  $$
+  \frac{1}{m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right) \cdot 1
+  $$
+
+* For $\theta_1$:
+
+  $$
+  \frac{1}{m} \sum_{i=1}^{m} \left(h_\theta(x^{(i)}) - y^{(i)}\right) \cdot x^{(i)}
+  $$
+
+> We differentiated the error term $E^{(i)} = \theta_0 + \theta_1 x^{(i)} - y^{(i)}$ with respect to both $\theta_0$ and $\theta_1$, applying basic derivative rules. These derivatives are essential components of the gradient of the cost function.
+
+---
+
+## 🔶 5. Final Derivatives:
+
+### ✅ For $\theta_0$:
+
+$$
+\frac{\partial J}{\partial \theta_0} = \frac{1}{m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)
+$$
+
+### ✅ For $\theta_1$:
+
+$$
+\frac{\partial J}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right) \cdot x^{(i)}
+$$
+
+---
+
+## 🔁 These are used in **Gradient Descent**:
+
+$$
+\theta_j := \theta_j - \alpha \cdot \frac{\partial}{\partial \theta_j} J(\theta)
+$$
+
+Where $\alpha$ is the learning rate.
+
+---
+
+---
+
+### ✅ **4. Final Gradient Descent Update Equations**
+
+$$
+\theta_0 := \theta_0 - \alpha \cdot \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})
+$$
+
+$$
+\theta_1 := \theta_1 - \alpha \cdot \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
+$$
+
+---
+
+### ✅ **5. Hypothesis Function**
+
+The predicted value:
+
+$$
+h_\theta(x) = \theta_0 + \theta_1 \cdot x
+$$
+
+---
+
+### ✅ **6. Convergence in Gradient Descent**
+
+* **Convergence stops** when updates to $\theta_0$, $\theta_1$ become negligible, i.e., cost function $J(\theta_0, \theta_1)$ flattens out.
+* This means you're **near the global minimum** (as the cost function is **convex** for linear regression).
+
+---
+
+### 📌 **Important Pointers to Remember**
+
+| Concept                      | Key Insight                                                     |
+| ---------------------------- | --------------------------------------------------------------- |
+| **Gradient Descent**         | Iterative algorithm to minimize cost                            |
+| **Convex Cost Function**     | Guarantees a single global minimum                              |
+| **Learning Rate $\alpha$**   | Must be chosen carefully (too high = overshoot, too low = slow) |
+| **Convergence Criteria**     | Small change in $\theta$ or cost function                       |
+| **Hypothesis Function**      | Linear equation $\theta_0 + \theta_1 x$                         |
+| **Derivative Logic**         | Basic calculus used to derive update rules                      |
+| **Vectorization (Optional)** | Can optimize computations for large datasets                    |
+
+---
+
+## start from (55:07)
