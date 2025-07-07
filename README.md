@@ -716,9 +716,9 @@ $$
 \frac{\partial J}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}
 $$
 
-### **Maths behind Derivatives for Gradient Descent Updates** 
-
 ---
+
+### **Maths behind Derivatives for Gradient Descent Updates** 
 
 #### 🔶 1. **Cost Function** (Mean Squared Error):
 
@@ -788,6 +788,8 @@ So:
 
 * $\frac{\partial E^{(i)}}{\partial \theta_0} = 1$
 * $\frac{\partial E^{(i)}}{\partial \theta_1} = x^{(i)}$
+
+---
 
 ### **Differntiation step by step** : Step 4 in details
 
