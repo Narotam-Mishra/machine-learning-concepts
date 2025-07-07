@@ -1167,4 +1167,149 @@ $$
 
 ---
 
-## start from (01:23:54)
+## 📌 **1. Lasso Regression (L1 Regularization)**
+
+### 🔷 **Formula (Cost Function)**:
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)^2 + \lambda \sum_{j=1}^{n} |\theta_j|
+$$
+
+### 🔷 **Key Concepts**:
+
+* **Adds penalty**: The **absolute value of coefficients (|θ|)**.
+* **Purpose**:
+
+  * Prevent **overfitting**.
+  * Perform **feature selection** by shrinking less useful feature coefficients to **zero**.
+* **Outcome**:
+
+  * Automatically drops **irrelevant features** (coefficients become exactly zero).
+  * **Sparse models** (few features retained).
+* **Why |θ| helps in feature selection?**
+
+  * Unlike L2 (which squares θ), L1 prefers sparse weights.
+  * Forces some θ values to become zero when λ is large enough.
+
+---
+
+## 📌 **2. Ridge Regression (L2 Regularization)**
+
+### 🔷 **Formula (Cost Function)**:
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)^2 + \lambda \sum_{j=1}^{n} \theta_j^2
+$$
+
+### 🔷 **Key Concepts**:
+
+* Adds penalty as **square of the coefficients (θ²)**.
+* **Purpose**:
+
+  * Prevent **overfitting**.
+  * Useful when features are correlated but we don’t want to eliminate them completely.
+* Coefficients are **shrunk**, but not exactly zero (no feature selection).
+* Ridge regression is helpful when **all features** are relevant but need to **control their influence**.
+
+---
+
+## 📌 **3. Comparison: Lasso vs Ridge**
+
+| Aspect                | Lasso (L1)              | Ridge (L2)                             |   |                         |
+| --------------------- | ----------------------- | -------------------------------------- | - | ----------------------- |
+| Regularization Term   | ( \lambda \sum          | \theta                                 | ) | $\lambda \sum \theta^2$ |
+| Feature Selection     | ✅ Yes (some θ become 0) | ❌ No                                   |   |                         |
+| Coefficient Shrinkage | ✅ Strong                | ✅ Mild                                 |   |                         |
+| Use Case              | Few important features  | All features matter, multicollinearity |   |                         |
+
+---
+
+## 📌 **4. Lambda (λ) — Regularization Parameter**
+
+* Controls the **strength of penalty**.
+* **Higher λ** → More shrinkage (simpler model).
+* Chosen via **cross-validation** (e.g. Grid Search CV).
+* **Goal**: Balance bias and variance, minimize the validation error.
+
+---
+
+## 📌 **5. Cross Validation**
+
+* Used to:
+
+  * Tune hyperparameters (like λ).
+  * Evaluate model performance reliably.
+* Splits dataset into **training and validation sets multiple times**.
+* Popular method: **k-Fold Cross Validation**.
+
+---
+
+## 📌 **6. Assumptions of Linear Regression**
+
+### ✅ **A. Linearity**
+
+* Relationship between input `X` and output `y` is **linear**.
+* Use scatter plots or residual plots to check.
+
+### ✅ **B. Normality of Features**
+
+* Features ideally follow **Gaussian distribution**.
+* If not, apply **feature transformation**:
+
+  * Log, square root, Box-Cox, etc.
+
+### ✅ **C. Standardization (Z-score scaling)**
+
+* Important when using **Gradient Descent** or **Regularization**.
+* Formula:
+
+$$
+Z = \frac{X - \mu}{\sigma}
+$$
+
+  * Mean = 0, Std Dev = 1
+* Helps gradient descent converge faster by normalizing feature scales.
+
+### ✅ **D. Multicollinearity**
+
+* **Highly correlated features** (e.g., X1 and X2 are 95% similar).
+* Causes instability in model interpretation and coefficient values.
+* Solution:
+
+  * Drop one of the highly correlated features.
+  * Use **Variance Inflation Factor (VIF)** to detect multicollinearity.
+
+### ✅ **E. Homoscedasticity**
+
+* Variance of errors should be **constant across all levels** of input variables.
+* Opposite of **heteroscedasticity** (which breaks this assumption).
+
+---
+
+## 📌 **7. Additional Concepts**
+
+* **Feature Selection**: Handled well by Lasso.
+* **Bias-Variance Tradeoff**:
+
+  * Regularization helps reduce **variance** without increasing bias too much.
+* **Gradient Descent**:
+
+  * Optimization algorithm to minimize cost.
+  * Works best with **scaled** features.
+
+---
+
+## ✅ Summary of Takeaways
+
+| Concept                   | Purpose / Role                                               |
+| ------------------------- | ------------------------------------------------------------ |
+| L1 Regularization (Lasso) | Prevents overfitting + performs feature selection            |
+| L2 Regularization (Ridge) | Prevents overfitting + shrinks coefficients smoothly         |
+| Lambda (λ)                | Controls regularization strength                             |
+| Cross Validation          | Helps in hyperparameter tuning                               |
+| Standardization           | Speeds up convergence & balances feature contribution        |
+| Feature Transformation    | Improves feature distribution for better model fit           |
+| Multicollinearity Check   | Improves model stability and interpretability                |
+| Assumptions               | Ensure linear regression performs accurately and efficiently |
+
+---
