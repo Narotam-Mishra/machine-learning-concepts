@@ -894,8 +894,6 @@ Where $\alpha$ is the learning rate.
 
 ---
 
----
-
 ### ✅ **4. Final Gradient Descent Update Equations**
 
 $$
