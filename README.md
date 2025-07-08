@@ -238,13 +238,13 @@ Given a scatter plot of points, Linear Regression finds the "best line" that min
 
 
 ## Linear Regression Algorithm (00:18:14)
-![Linear Regression](/notes/01_Linear_Regression_1.1.png)
+![Linear Regression](/notes/01/01_Linear_Regression_1.1.png)
 
 **Linear Regression Problem Statement** - Suppose we have given dataset of age (on x-axis) & weight (on y-axis) on 2D plane of XY, where we have calculated weight on the basis of age. In case of Linear Regression, we will try to find best fit line which will help us to do the predicition, i.e wrt any new age (on x-axis) what will be output (weight on y-axis). So, Y-axis (weight) is linear function of X-axis (age)
 
 In case of Linear Regression we try to create a model with the help of training dataset, where the model (hypothesis) takes new age (independent feature) and gives the output of weight and with the help of performance metrics we try to verify whether that model is performing well or not.
 
-![Equation of a straight line](/notes/01_Linear_Regression_1.3.png)
+![Equation of a straight line](/notes/01/01_Linear_Regression_1.3.png)
 
 ---
 
@@ -323,7 +323,7 @@ They all represent the **same underlying linear relationship**, just expressed d
 
 ---
 
-![Cost function in Linear Regression](/notes/01_Linear_Regression_1.6.png)
+![Cost function in Linear Regression](/notes/01/01_Linear_Regression_1.6.png)
 
 In Linear Regression, the cost function measures how well your model's predictions match the actual data. It tells you how "wrong" the model is — and we try to minimize this cost to make better predictions.
 
@@ -481,7 +481,7 @@ $$
   * **θ₁ = 0**: Worst fit, cost ≈ 2.3
 
 ---
-![Graph of cost function vs slope (θ₁)](/notes/01_Linear_Regression_1.11.png)
+![Graph of cost function vs slope (θ₁)](/notes/01/01_Linear_Regression_1.11.png)
 
 ## 🔹 **8. Cost Function Plot (J vs θ₁)**
 
