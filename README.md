@@ -1167,6 +1167,8 @@ $$
 
 ---
 
+**Regularization** adds a penalty term to the loss function (cost function) to discourage the model from fitting the noise in the training data.
+
 ## 📌 **1. Lasso Regression (L1 Regularization)**
 
 ### 🔷 **Formula (Cost Function)**:
@@ -1191,6 +1193,11 @@ $$
   * Unlike L2 (which squares θ), L1 prefers sparse weights.
   * Forces some θ values to become zero when λ is large enough.
 
+✅ When to Use Lasso?
+- When you have many features, but only a few are important
+- You want to do feature selection automatically
+- You want a sparse model (i.e., with fewer non-zero coefficients)
+
 ---
 
 ## 📌 **2. Ridge Regression (L2 Regularization)**
@@ -1211,6 +1218,10 @@ $$
 * Coefficients are **shrunk**, but not exactly zero (no feature selection).
 * Ridge regression is helpful when **all features** are relevant but need to **control their influence**.
 
+✅ When to Use Ridge?
+- When all features are useful
+- When features are correlated
+- You want to reduce model complexity without removing features
 ---
 
 ## 📌 **3. Comparison: Lasso vs Ridge**
@@ -1313,3 +1324,185 @@ $$
 | Assumptions               | Ensure linear regression performs accurately and efficiently |
 
 ---
+
+## ✅ Setup: Toy Dataset - Example of Ridge and Lasso Regression
+
+We’ll use a very small dataset to simplify calculations.
+
+### Suppose we have:
+
+| x | y |
+| - | - |
+| 1 | 2 |
+| 2 | 3 |
+| 3 | 4 |
+
+We want to fit a **linear model**:
+
+$$
+\hat{y} = \theta_0 + \theta_1 x
+$$
+
+Let’s ignore bias $\theta_0$ (for simplicity) and fit:
+
+$$
+\hat{y} = \theta_1 x
+$$
+
+---
+
+# 🔷 1. RIDGE REGRESSION (L2): Step-by-Step
+
+### 📌 Goal:
+
+Minimize the cost function:
+
+$$
+J(\theta_1) = \sum_{i=1}^{n} (y_i - \theta_1 x_i)^2 + \lambda \theta_1^2
+$$
+
+We’ll calculate for $\lambda = 1$
+
+---
+
+## 🔽 Step-by-step
+
+### 🧮 Step 1: Compute squared error loss
+
+$$
+J(\theta_1) = (2 - \theta_1 \cdot 1)^2 + (3 - \theta_1 \cdot 2)^2 + (4 - \theta_1 \cdot 3)^2 + 1 \cdot \theta_1^2
+$$
+
+Now expand each term:
+
+* First term: $(2 - \theta_1)^2 = 4 - 4\theta_1 + \theta_1^2$
+* Second: $(3 - 2\theta_1)^2 = 9 - 12\theta_1 + 4\theta_1^2$
+* Third: $(4 - 3\theta_1)^2 = 16 - 24\theta_1 + 9\theta_1^2$
+* Ridge penalty: $+ \theta_1^2$
+
+Now sum them:
+
+$$
+J(\theta_1) = (4 + 9 + 16) - (4 + 12 + 24)\theta_1 + (1 + 4 + 9 + 1)\theta_1^2
+$$
+
+$$
+= 29 - 40\theta_1 + 15\theta_1^2
+$$
+
+---
+
+### 🔍 Step 2: Minimize cost
+
+To minimize $J(\theta_1) = 29 - 40\theta_1 + 15\theta_1^2$, take derivative and set to 0:
+
+$$
+\frac{dJ}{d\theta_1} = -40 + 30\theta_1 = 0
+$$
+
+$$
+\Rightarrow \theta_1 = \frac{40}{30} = \frac{4}{3} \approx 1.33
+$$
+
+---
+
+### 🎯 Final Ridge Model:
+
+$$
+\hat{y} = 1.33 \cdot x
+$$
+
+Compare this with **ordinary least squares (OLS)**:
+
+* If no penalty: $\theta_1 = 1.4$
+* Ridge shrinks it slightly → $\theta_1 = 1.33$
+
+---
+
+# 🟨 2. LASSO REGRESSION (L1): Step-by-Step
+
+### 📌 Goal:
+
+Minimize the cost function:
+
+$$
+J(\theta_1) = \sum (y_i - \theta_1 x_i)^2 + \lambda |\theta_1|
+$$
+
+Again use $\lambda = 1$
+
+---
+
+## ⚠️ Challenge:
+
+The absolute value $|\theta_1|$ makes the function **non-differentiable at 0**, so we can’t use regular calculus like with Ridge. Instead, we use **subgradients** or try piecewise analysis.
+
+---
+
+### 🧮 Step 1: Use same data as above
+
+The squared error part:
+
+$$
+S(\theta_1) = 29 - 40\theta_1 + 14\theta_1^2 \quad \text{(without penalty)}
+$$
+
+Now add the Lasso penalty:
+
+$$
+J(\theta_1) = 29 - 40\theta_1 + 14\theta_1^2 + |\theta_1|
+$$
+
+---
+
+### ⚖️ Step 2: Piecewise derivative
+
+#### Case 1: $\theta_1 > 0$
+
+$$
+\frac{dJ}{d\theta_1} = -40 + 28\theta_1 + 1
+= -39 + 28\theta_1
+\Rightarrow 28\theta_1 = 39 \Rightarrow \theta_1 = \frac{39}{28} \approx 1.39
+$$
+
+#### Case 2: $\theta_1 < 0$
+
+$$
+\frac{dJ}{d\theta_1} = -40 + 28\theta_1 - 1 = -41 + 28\theta_1
+\Rightarrow 28\theta_1 = 41 \Rightarrow \theta_1 = \frac{41}{28} \approx 1.46 \text{ (But negative)}
+$$
+
+That’s invalid for $\theta_1 < 0$
+
+So optimal solution is:
+
+$$
+\theta_1 \approx 1.39
+$$
+
+✅ Still close to OLS (1.4), but **Lasso tends to zero out coefficients** in high-dimensional data (this toy data doesn’t need it yet).
+
+---
+
+## 🧠 BONUS: Why Lasso Can Become 0?
+
+Imagine if $\theta_1$ was small (like 0.01). Then:
+
+* Ridge penalty: $(0.01)^2 = 0.0001$
+* Lasso penalty: $|0.01| = 0.01$
+
+👉 Lasso adds **stronger penalty** near 0 → it's **more likely to push small values exactly to 0**.
+
+---
+
+## ✅ Summary of Calculations
+
+| Technique   | Cost Function                              | Derivation Result     |   |                       |
+| ----------- | ------------------------------------------ | --------------------- | - | --------------------- |
+| Linear Reg. | $\sum (y - \theta x)^2$                    | $\theta = 1.4$        |   |                       |
+| **Ridge**   | $\sum (y - \theta x)^2 + \lambda \theta^2$ | $\theta \approx 1.33$ |   |                       |
+| **Lasso**   | ( \sum (y - \theta x)^2 + \lambda          | \theta                | ) | $\theta \approx 1.39$ |
+
+---
+
+
