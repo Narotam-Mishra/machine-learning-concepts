@@ -2340,4 +2340,235 @@ Suppose we have 1 training example:
 
 ---
 
-## start from (01:58:53)
+Recall - Out of all the actual true positives how many have been predicted correctly.
+
+Precision - Out of all the predicted positive values how many of them are actually true or positive.
+
+## ✅ **1. Confusion Matrix Basics**
+
+A **Confusion Matrix** is a table used to evaluate the performance of a classification model.
+
+### Confusion Matrix Layout:
+
+|               | **Predicted: 1**    | **Predicted: 0**    |
+| ------------- | ------------------- | ------------------- |
+| **Actual: 1** | True Positive (TP)  | False Negative (FN) |
+| **Actual: 0** | False Positive (FP) | True Negative (TN)  |
+
+### ✅ Definitions:
+
+* **True Positive (TP)**: Model correctly predicts positive class.
+* **True Negative (TN)**: Model correctly predicts negative class.
+* **False Positive (FP)**: Model predicts positive, but actual is negative. (Type I Error)
+* **False Negative (FN)**: Model predicts negative, but actual is positive. (Type II Error)
+
+---
+
+## ✅ **2. Accuracy**
+
+### Formula:
+
+$$
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+$$
+
+### ⚠️ Note:
+
+* Works well **only when classes are balanced**.
+* Fails in **imbalanced datasets** (e.g., predicting all zeros in 90:10 ratio gives 90% accuracy, which is misleading).
+
+---
+
+## ✅ **3. Precision, Recall, and F-Score**
+
+| Metric                   | Formula                                                     | Interpretation                                             |
+| ------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------- |
+| **Precision**            | $\frac{TP}{TP + FP}$                                        | Of all predicted positives, how many are correct           |
+| **Recall** (Sensitivity) | $\frac{TP}{TP + FN}$                                        | Of all actual positives, how many were correctly predicted |
+| **F1 Score**             | $\frac{2 \cdot Precision \cdot Recall}{Precision + Recall}$ | Harmonic mean of precision and recall                      |
+
+---
+
+## ✅ **4. Imbalanced Dataset Handling**
+
+* **Balanced Dataset**: 50:50, 60:40 is usually okay.
+* **Imbalanced Dataset**: e.g., 900 zeros and 100 ones.
+
+  * A model always predicting 0 will have 90% accuracy but 0 recall on the positive class.
+  * We must then rely more on:
+
+    * **Recall** (to reduce FN)
+    * **Precision** (to reduce FP)
+    * **F1 / Fβ Score**
+
+---
+
+## ✅ **5. When to Use Precision vs Recall**
+
+| Use Case                       | Metric Focus  | Reason                                                                                                                              |
+| ------------------------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Spam Detection**             | **Precision** | FP = Non-spam marked as spam → annoying but not harmful                                                                             |
+| **Cancer Detection**           | **Recall**    | FN = Cancer missed → critical!                                                                                                      |
+| **Stock Market Crash Warning** | Depends       | If for **people**, prioritize **recall** (warn even if unsure); if for **companies**, prioritize **precision** (avoid false alarms) |
+
+---
+
+## ✅ **6. Fβ (F-beta) Score**
+
+### General Formula:
+
+$$
+F_\beta = (1 + \beta^2) \cdot \frac{\text{Precision} \cdot \text{Recall}}{(\beta^2 \cdot \text{Precision}) + \text{Recall}}
+$$
+
+### Interpretation of β (beta):
+
+* **β = 1**: F1 score — **equal importance** to precision and recall.
+* **β < 1** (e.g., 0.5): **More weight to precision**
+* **β > 1** (e.g., 2): **More weight to recall**
+
+| F Score Type   | Beta Value | Emphasizes               |
+| -------------- | ---------- | ------------------------ |
+| **F1 Score**   | 1          | Precision = Recall       |
+| **F0.5 Score** | 0.5        | Precision more important |
+| **F2 Score**   | 2          | Recall more important    |
+
+### Details on F-beta Score
+
+### 🔷 What is **F-beta Score**?
+
+The **F-beta score** is a **generalized version** of the **F1 score** that allows us to **control the trade-off between precision and recall** in a classification model.
+
+### ✅ Formula:
+
+$$
+F_\beta = (1 + \beta^2) \cdot \frac{(\text{Precision} \cdot \text{Recall})}{(\beta^2 \cdot \text{Precision}) + \text{Recall}}
+$$
+
+---
+
+### 🔹 Why Use F-beta?
+
+In classification problems — especially **imbalanced datasets** — we often want to **balance** or **emphasize one metric over the other**:
+
+* **Precision**: Out of all predicted positives, how many were actually correct?
+* **Recall**: Out of all actual positives, how many were correctly predicted?
+
+The **F1 score** is the **harmonic mean** of precision and recall (i.e., when **β = 1**), treating both as equally important:
+
+$$
+F_1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+But in real-world problems, sometimes:
+
+* **False negatives are more dangerous** (e.g., cancer detection).
+* Or **false positives are more costly** (e.g., spam detection in emails).
+
+That’s where **F-beta** comes in — it lets you **adjust the weight** between precision and recall using **β (beta)**.
+
+---
+
+### 🔹 How β (beta) Affects the Score:
+
+| **Beta (β)** | **Interpretation** | **Emphasizes**                       |
+| ------------ | ------------------ | ------------------------------------ |
+| **β = 1**    | F1 Score           | Equal weight to precision and recall |
+| **β < 1**    | e.g., 0.5          | More weight to **precision**         |
+| **β > 1**    | e.g., 2            | More weight to **recall**            |
+
+---
+
+### 🔸 Example Use Cases
+
+| Problem Type               | Metric Focus  | Use F-beta?  | Reason                                             |
+| -------------------------- | ------------- | ------------ | -------------------------------------------------- |
+| **Spam Detection**         | **Precision** | Use **F0.5** | Avoid flagging legit emails as spam (FP is costly) |
+| **Disease Diagnosis**      | **Recall**    | Use **F2**   | Don't miss true cases (FN is dangerous)            |
+| **General Classification** | Balanced      | Use **F1**   | When FP and FN are equally important               |
+
+---
+
+### ✅ Summary
+
+* **F-beta** is a **customizable performance metric** for classification tasks.
+* Helps in **controlling the trade-off** between **precision** and **recall**.
+* Essential when you **care more about one type of error** (false positive or false negative).
+* It’s especially useful in **imbalanced datasets** or **high-stakes domains**.
+
+---
+
+## ✅ **7. Summary Table of Metrics**
+
+| Metric    | Use Case                               | Key Focus            |
+| --------- | -------------------------------------- | -------------------- |
+| Accuracy  | Balanced datasets                      | Overall correctness  |
+| Precision | False positives costly (e.g., spam)    | Be sure of positives |
+| Recall    | False negatives costly (e.g., cancer)  | Don’t miss positives |
+| F1 Score  | Balanced importance of FP & FN         | Overall performance  |
+| Fβ Score  | Custom importance (β<1 → FP, β>1 → FN) | Tuned metric         |
+
+---
+
+## ✅ **8. Practical Recommendations**
+
+* Always **analyze the dataset class distribution** first.
+* For **imbalanced data**, prefer metrics like:
+
+  * Precision, Recall, F1/Fβ
+  * ROC-AUC (not discussed here)
+* Choose metric based on **domain needs** (medical, finance, security, etc.)
+* Use **oversampling**, **undersampling**, or **SMOTE** to handle imbalance if needed.
+
+---
+
+## Example Case Study :- model predicting stock market crash (People vs Company)
+
+## 🧑‍💼 **1. For People (Retail Investors): Why Knowing a Crash is Good**
+
+If a model **predicts a stock market crash**, then:
+
+* **Recall is important** → we want to **catch all possible crash events**.
+* Even if it leads to **some false alarms** (i.e., model says crash, but it doesn't happen), **that’s acceptable**.
+* **Why?**
+
+  * They can sell off or reduce exposure.
+  * **Risk-averse behavior** is protective.
+  * Losing a small gain is better than losing capital in a crash.
+* **False Negative** (missed crash) is **worse** than **False Positive** (unnecessary warning).
+
+> **Conclusion**: For individuals, even a **false warning is better than missing a real crash** → **recall is prioritized**.
+
+---
+
+## 🏢 **2. For Companies (Large Institutions): Why It’s "Very Bad"**
+
+If a company model **predicts a crash** and it's **wrong (False Positive)**:
+
+* They may **panic-sell**, **hedge heavily**, or **withdraw** investments.
+* This can cause:
+
+  * **Massive opportunity loss**.
+  * **Market distortion** if large players act wrongly.
+  * **Unnecessary cost** (e.g., fees for hedging, selling early).
+  * Loss of **client trust** or **investor confidence**.
+
+> **Key Point**: Companies act on **scale** — even a small mistake can mean **millions lost** in opportunity or transactions.
+
+Additionally:
+
+* Institutional players often follow **long-term strategies**.
+* **Too many false positives (bad crash predictions)** will lead to **inefficiency**, distrust in model, or overcautious behavior.
+
+> **Conclusion**: For companies, **precision is crucial** — when they act, they must be **sure** the crash is real.
+
+---
+
+## ✅ Summary Table
+
+| Perspective              | What’s Prioritized | Why                                                               |
+| ------------------------ | ------------------ | ----------------------------------------------------------------- |
+| **People** (retail)      | **Recall**         | Better to **warn even if wrong**. A missed crash is dangerous.    |
+| **Companies** (industry) | **Precision**      | Acting on false alerts causes **huge losses** and inefficiencies. |
+
+---
