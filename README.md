@@ -1920,10 +1920,6 @@ This loss function works **only when the prediction $h_\theta(x)$** is between 0
 
 ---
 
-Here's a **comprehensive and detailed summary** of the **Machine Learning concepts related to Logistic Regression**, including **cost function derivation, decision boundaries, convexity**, and **why a special cost function is needed**. I've broken it down for clarity with key takeaways and examples.
-
----
-
 ## 🔷 **1. Problem Setup**
 
 We start with a **binary classification** problem:
