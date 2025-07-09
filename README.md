@@ -1980,8 +1980,8 @@ To solve this, a **new cost function** is used, based on **log-likelihood** and 
 $$
 \text{Cost}(h_\theta(x), y) = 
 \begin{cases}
-- \log(h_\theta(x)) & \text{if } y = 1 \\
-- \log(1 - h_\theta(x)) & \text{if } y = 0
+\log(h_\theta(x)) & \text{if } y = 1 \\
+\log(1 - h_\theta(x)) & \text{if } y = 0
 \end{cases}
 $$
 
