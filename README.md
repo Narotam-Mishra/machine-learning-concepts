@@ -1689,6 +1689,129 @@ $$
 
 It divides the feature space into two halves — one predicting 1 and the other predicting 0.
 
+## **More about Decision Boundary in Logistic Regression**
+
+Concept of a **decision boundary in logistic regression**, **why it is not the sigmoid curve**, and why we solve for:
+
+$$
+\theta^T x = 0
+$$
+
+## 🔷 What is a Decision Boundary in Logistic Regression?
+
+### ✅ Logistic Regression Overview
+
+Logistic regression is used for **binary classification** — it predicts whether an input belongs to class **1** or **0**.
+
+We calculate the **probability** that a given input `x` belongs to class 1 using the **sigmoid function**:
+
+$$
+h_\theta(x) = \sigma(\theta^T x) = \frac{1}{1 + e^{-\theta^T x}}
+$$
+
+* $\theta$ = model parameters (weights + bias)
+* $x$ = feature vector
+* $h_\theta(x)$ = probability that the label is 1
+
+---
+
+### ✅ But What Is the Decision Boundary?
+
+* The **sigmoid** output $h_\theta(x)$ is a value between **0 and 1**.
+* We **classify** as 1 if:
+
+$$
+h_\theta(x) \geq 0.5
+$$
+
+  and as 0 if:
+
+$$
+h_\theta(x) < 0.5
+$$
+
+👉 So the **decision boundary** is the region where:
+
+$$
+h_\theta(x) = 0.5
+$$
+
+Let’s plug this into the sigmoid equation:
+
+$$
+\frac{1}{1 + e^{-\theta^T x}} = 0.5
+$$
+
+Solve it:
+
+$$
+1 + e^{-\theta^T x} = 2 \Rightarrow e^{-\theta^T x} = 1 \Rightarrow -\theta^T x = 0 \Rightarrow \theta^T x = 0
+$$
+
+✅ **Therefore, the decision boundary is the set of points where**:
+
+$$
+\theta^T x = 0
+$$
+
+---
+
+### 🔶 Why Is It Called a "Boundary"?
+
+This equation $\theta^T x = 0$ defines a **hyperplane** (a line in 2D, a plane in 3D, etc.) that **divides the input space**:
+
+* **One side** gives $h_\theta(x) > 0.5$ → Predict class **1**
+* **Other side** gives $h_\theta(x) < 0.5$ → Predict class **0**
+
+---
+
+## 📌 Example (2D Case)
+
+Let’s say:
+
+$$
+\theta = [-3, 1, 1] \quad \text{(i.e., bias = -3, weights for x1 and x2 are 1)}
+$$
+
+So:
+
+$$
+\theta^T x = -3 + x_1 + x_2
+$$
+
+Set decision boundary:
+
+$$
+-3 + x_1 + x_2 = 0 \Rightarrow x_1 + x_2 = 3
+$$
+
+This is a **line** in 2D space. It separates the feature space into:
+
+* **Above the line** (e.g., $x_1 + x_2 > 3$) → class 1
+* **Below the line** (e.g., $x_1 + x_2 < 3$) → class 0
+
+---
+
+## 🧠 Key Takeaways
+
+| Concept             | Meaning                                                              |
+| ------------------- | -------------------------------------------------------------------- |
+| Sigmoid             | Maps any real value to a probability (0 to 1)                        |
+| $h_\theta(x) = 0.5$ | The cutoff probability used to classify                              |
+| $\theta^T x = 0$    | The actual decision boundary equation                                |
+| Not sigmoid curve   | The sigmoid is a curve in output space; boundary lies in input space |
+
+---
+
+## 📌 Visual Intuition (2D)
+
+Imagine a graph:
+
+* X-axis: Feature 1
+* Y-axis: Feature 2
+* The line $x_1 + x_2 = 3$ splits the space.
+* Points on one side → label 1 (green), other side → label 0 (red)
+
 ---
 
 ## 📌 **Why Not Just Use Linear Regression?**
