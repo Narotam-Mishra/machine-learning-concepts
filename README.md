@@ -1648,6 +1648,8 @@ $$
 
 ---
 
+![Sigmoid Function Graph](/notes/03/02_Decision_Boundary_of_Logistic_Regression-1.3.png)
+
 ## 🔸 **Graphical Interpretation of the Sigmoid Function**
 
 * The sigmoid function outputs values between **0 and 1**.
