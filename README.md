@@ -2576,3 +2576,5 @@ Additionally:
 ## Linear Regression Practical Implementation(02:13:52)
 
 **Library used** - `numpy`, `pandas`, `seaborn`, `matplotlib`
+
+**Command to activate virtual environment in python - `.\venv\Scripts\activate`
