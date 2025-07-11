@@ -2577,4 +2577,4 @@ Additionally:
 
 **Library used** - `numpy`, `pandas`, `seaborn`, `matplotlib`
 
-**Command to activate virtual environment in python - `.\venv\Scripts\activate`
+**Command to activate virtual environment in python** - `.\venv\Scripts\activate`
