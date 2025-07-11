@@ -2572,3 +2572,7 @@ Additionally:
 | **Companies** (industry) | **Precision**      | Acting on false alerts causes **huge losses** and inefficiencies. |
 
 ---
+
+## Linear Regression Practical Implementation(02:13:52)
+
+**Library used** - `numpy`, `pandas`, `seaborn`, `matplotlib`
