@@ -1269,6 +1269,8 @@ $$
 
   * Log, square root, Box-Cox, etc.
 
+- Note :- If we plot Linear Regression model errors (i.e, actual - expected) graph, then it form a bell-shaped (normal) curve — most errors are small, few are large
+
 ### ✅ **C. Standardization (Z-score scaling)**
 
 * Important when using **Gradient Descent** or **Regularization**.
@@ -1280,6 +1282,61 @@ $$
 
   * Mean = 0, Std Dev = 1
 * Helps gradient descent converge faster by normalizing feature scales.
+
+---
+
+### ✅ What is a Z-score?
+
+A **Z-score** tells you **how far a data point is from the mean**, measured in **standard deviations**.
+
+$$
+\text{Z-score} = \frac{x - \mu}{\sigma}
+$$
+
+Where:
+
+* $x$ = your data point
+* $\mu$ = mean of the data
+* $\sigma$ = standard deviation
+
+### 📊 In Simple Words:
+
+> A Z-score tells you how **"unusual"** or **"typical"** a value is in a dataset.
+
+
+### 🎯 Simple Example:
+
+Suppose:
+
+* The average height of students is **170 cm**
+* The standard deviation is **10 cm**
+
+Now, if a student is **180 cm tall**, their Z-score is:
+
+$$
+Z = \frac{180 - 170}{10} = 1
+$$
+
+This means:
+
+* The student is **1 standard deviation above** the average height.
+
+If another student is **155 cm**:
+
+$$
+Z = \frac{155 - 170}{10} = -1.5
+$$
+
+→ They're **1.5 standard deviations below** the mean.
+
+
+### ✅ Why Z-scores Matter:
+
+* Used to **standardize** data
+* Helps in **outlier detection**
+* Common in **probability, statistics, and machine learning**
+
+---
 
 ### ✅ **D. Multicollinearity**
 
