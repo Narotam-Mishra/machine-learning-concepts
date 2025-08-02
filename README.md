@@ -2331,6 +2331,73 @@ It measures how far off the predicted probability is from the actual class label
 
 ---
 
+### Why use `log` in the Logistic Regression cost function?
+
+In **Logistic Regression**, we want to **penalize wrong predictions** more severely and **reward correct predictions** gently. The **log function** helps us do exactly that.
+
+---
+
+### 🔍 Cost Function (Recap)
+
+The **cost function** is:
+
+$$
+\text{Cost}(h_\theta(x), y) = 
+\begin{cases}
+-\log(h_\theta(x)) & \text{if } y = 1 \\
+-\log(1 - h_\theta(x)) & \text{if } y = 0
+\end{cases}
+$$
+
+Here,
+
+* $h_\theta(x)$ is the **predicted probability** that $y = 1$
+* $y \in \{0, 1\}$ is the **true label**
+
+---
+
+### ✅ Intuition with Examples
+
+Let’s assume the model outputs a probability $h_\theta(x)$:
+
+#### Case 1: **True label is 1 (y = 1)**
+
+We want the model to predict **high probability** for 1.
+
+| $h_\theta(x)$ | $-\log(h_\theta(x))$ | Cost                  |
+| ------------- | -------------------- | --------------------- |
+| 0.9           | -log(0.9) ≈ 0.105    | Low (Good prediction) |
+| 0.1           | -log(0.1) ≈ 2.3      | High (Bad prediction) |
+
+#### Case 2: **True label is 0 (y = 0)**
+
+We want the model to predict **low probability** for 1 (i.e., high for 0).
+
+| $h_\theta(x)$ | $-\log(1 - h_\theta(x))$ | Cost                  |
+| ------------- | ------------------------ | --------------------- |
+| 0.1           | -log(0.9) ≈ 0.105        | Low (Good prediction) |
+| 0.9           | -log(0.1) ≈ 2.3          | High (Bad prediction) |
+
+---
+
+### 📌 Why Log?
+
+* The **log function grows fast** as its input approaches 0 — so **wrong predictions are heavily penalized**.
+* It's **smooth and differentiable**, which makes it easy to optimize using gradient descent.
+* It ensures **convexity**, so we get a single global minimum — very important for reliable optimization.
+
+---
+
+### 🔑 In Short:
+
+We use **log** to:
+
+* Penalize wrong predictions heavily
+* Make the cost function differentiable and convex
+* Match the maximum likelihood estimation (MLE) for binary classification
+
+---
+
 ### ✅ 4. **Combine Into a Single Expression**
 
 To simplify implementation and allow for vectorization, combine both cases into **one formula**:
