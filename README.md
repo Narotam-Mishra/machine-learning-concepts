@@ -2697,8 +2697,12 @@ Additionally:
 
 ---
 
-## Linear Regression Practical Implementation(02:13:52)
-
-**Library used** - `numpy`, `pandas`, `seaborn`, `matplotlib`
+**Popular libraries used** - `numpy`, `pandas`, `seaborn`, `matplotlib`
 
 **Command to activate virtual environment in python** - `.\venv\Scripts\activate`
+
+---
+
+### [GenAI RoadMap](https://chatgpt.com/share/6890c705-35f8-8004-b75a-c691205fcdc6)
+
+### [Maths Roadmap for Machine Learning](https://docs.google.com/spreadsheets/d/10spJMs0Zmv5cugfFjJVc4MudyOVjl_16Ef5z54oxqnM/edit?gid=241859416#gid=241859416)
