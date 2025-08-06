@@ -2706,3 +2706,101 @@ Additionally:
 ### [GenAI RoadMap](https://chatgpt.com/share/6890c705-35f8-8004-b75a-c691205fcdc6)
 
 ### [Maths Roadmap for Machine Learning](https://docs.google.com/spreadsheets/d/10spJMs0Zmv5cugfFjJVc4MudyOVjl_16Ef5z54oxqnM/edit?gid=241859416#gid=241859416)
+
+---
+
+### Types of Machine Learning (24:41)
+
+#### 🧠 Types of Machine Learning (Based on amount of supervision)
+
+##### 1. Supervised Learning
+
+* **Definition**: Both **input features** and **output labels** are available.
+* **Goal**: Learn a model that maps inputs to outputs for future predictions.
+
+**Subtypes:**
+
+* **Regression**: Output is **numerical**.
+
+  * Example: Predicting placement salary based on IQ and CGPA.
+* **Classification**: Output is **categorical** (labels).
+
+  * Example: Predict whether a student gets placed (Yes/No), classifying emails as spam/not spam, image recognition (dog vs no dog).
+
+**Important Points:**
+
+* Requires labeled datasets.
+* Input types: numerical (IQ, CGPA, height) or categorical (gender, country, phone brand).
+* Understand the difference: if target/output is numeric → regression; if categorical → classification.
+
+---
+
+##### 2. Unsupervised Learning
+
+* **Definition**: Only **input data** is available, no output labels.
+* **Goal**: Discover hidden patterns or structures in data.
+
+**Major Techniques:**
+
+* **Clustering**: Group similar data points together (e.g., grouping students by IQ & CGPA).
+* **Dimensionality Reduction**: Reduce high-dimensional data to fewer features (e.g., PCA), enabling visualization or simplifying models.
+* **Association Rule Learning**: Find relationships among variables in transactional data (e.g., customers who buy diapers often buy beer).
+
+**Business applications:**
+
+* Customer segmentation, market basket analysis, visualization of complex datasets.
+
+---
+
+##### 3. Semi‑Supervised Learning
+
+* **Definition**: Combination of **few labeled examples** and **many unlabeled examples**.
+* **Goal**: Leverage limited labeled data to guide learning on the larger unlabeled dataset.
+
+**Example:**
+
+* Google Photos or WhatsApp photo libraries: you label a few images of a person, and the model groups the rest automatically.
+
+**Important Notes:**
+
+* Saves labeling costs and efforts.
+* Used in image recognition, text classification with minimal human annotation.
+
+---
+
+##### 4. Reinforcement Learning
+
+* **Definition**: Agent interacts with an **environment**, takes actions, and receives **rewards or penalties**, learning through trial-and-error.
+* **Goal**: Maximize cumulative reward by improving policy over time.
+
+**Key Concepts:**
+
+* Agent, Environment, Policy, Reward, Actions.
+* Example: Training an agent to play games, learning to drive autonomously, or real-world robotics.
+
+**Important Example:**
+
+* DeepMind’s game‑playing agent that beat world champions in complex games, learned via reinforcement learning through many simulated trials.
+
+---
+
+### ✅ Summary Table
+
+| ML Category                  | Supervision Level        | Output Type                    | Popular Techniques                                      |
+| ---------------------------- | ------------------------ | ------------------------------ | ------------------------------------------------------- |
+| **Supervised Learning**      | Full supervision         | Labeled numeric or categorical | Regression, Classification                              |
+| **Unsupervised Learning**    | No supervision           | No labels                      | Clustering, Dimensionality Reduction, Association rules |
+| **Semi-Supervised Learning** | Partial (some labels)    | Mix of labeled & unlabeled     | Leveraging a few labels to classify the rest            |
+| **Reinforcement Learning**   | Reward-based interaction | Action-based outcome           | Trial-and-error agent learning to maximize reward       |
+
+---
+
+### 🗒️ Key Pointers to Remember:
+
+* **Supervised**: Input + Output → predict labels or values.
+* **Unsupervised**: Input only → discover structure or patterns.
+* **Semi-Supervised**: Use small labeled dataset to bootstrap learning on large unlabeled set.
+* **Reinforcement**: Learn via interaction with environment to maximize reward.
+
+---
+
