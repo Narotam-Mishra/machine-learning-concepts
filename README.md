@@ -2709,7 +2709,7 @@ Additionally:
 
 ---
 
-### Types of Machine Learning (24:41)
+### D3 - Types of Machine Learning (24:41)
 
 #### 🧠 Types of Machine Learning (Based on amount of supervision)
 
@@ -2803,4 +2803,89 @@ Additionally:
 * **Reinforcement**: Learn via interaction with environment to maximize reward.
 
 ---
+
+### D4 - Batch Machine Learning | Offline Vs Online Learning (11:27)
+
+---
+
+#### **1. Production in ML**
+
+* **Production**: The environment where your ML model/software is deployed on a server with a public IP, accessible to customers.
+* **Development environment**: Where the model is built and tested locally.
+* **Difference in ML**: ML models may behave differently in production vs. development.
+
+---
+
+#### **2. Types of Learning Approaches**
+
+The classification here is based on **how the ML model is trained**:
+
+### **A. Batch Learning (Offline Learning)**
+
+**Definition**:
+
+* Train the model using the **entire dataset at once** (batch).
+* Usually done **offline** on a local machine or dedicated server.
+* After training, the model is deployed to production.
+* Model remains **static** until retrained.
+
+**Advantages**:
+
+* Good for stable datasets.
+* Training can be done with full computational resources.
+
+**Disadvantages**:
+
+1. **Static model** – doesn’t adapt automatically to new data.
+2. **Retraining overhead** – new data requires full retraining, which is time-consuming and costly.
+3. **Hardware limitations** – large datasets might not fit in memory.
+4. **Connectivity issues** – in remote or offline locations, frequent updates aren’t possible.
+5. **Delayed updates** – periodic retraining (e.g., every 24 hours) can make recommendations outdated in fast-changing scenarios (e.g., breaking news).
+
+**Example**:
+
+* Movie recommendation engine trained on historical data, deployed as-is. Needs retraining to reflect newly released movies.
+
+---
+
+### **B. Online Learning (Incremental Learning)**
+
+**Definition**:
+
+* Model updates continuously or frequently **as new data arrives**.
+* Incorporates **incremental training** instead of retraining from scratch.
+* Well-suited for dynamic environments with constantly changing data.
+
+**Advantages**:
+
+* Real-time or near real-time updates.
+* Handles changing user interests or business scenarios better.
+* Avoids full retraining on the whole dataset.
+
+**Disadvantages**:
+
+* Requires robust infrastructure for continuous data ingestion and model updates.
+* Potential risk of model drift if data quality is poor.
+
+**Example**:
+
+* Social media feed ranking system that updates as soon as new user activity is recorded.
+
+---
+
+#### **3. Key Takeaways**
+
+* **Batch Learning** = Train once on entire dataset, deploy static model, retrain periodically.
+* **Online Learning** = Update model continuously or incrementally as new data arrives.
+* Choice depends on:
+
+  * **Data size**
+  * **Rate of data change**
+  * **Computational resources**
+  * **Real-time needs**
+* In fast-evolving contexts (news, trending content), online learning is more effective.
+* In stable, less time-sensitive contexts (image recognition models, stable datasets), batch learning is simpler and efficient.
+
+---
+
 
