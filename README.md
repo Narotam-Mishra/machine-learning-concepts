@@ -2888,4 +2888,68 @@ The classification here is based on **how the ML model is trained**:
 
 ---
 
+### D5 - Online Machine Learning | Online Learning | Online Vs Offline Machine Learning (19:27)
 
+### **Summary of Online Machine Learning Concepts**  
+
+#### **1. What is Online Learning?**  
+- Unlike **batch learning**, where the model is trained on the entire dataset at once, **online learning** trains the model incrementally using small chunks of data sequentially.  
+- The model continuously updates itself as new data arrives, improving performance over time.  
+- Suitable for **real-time applications** where data streams continuously (e.g., recommendation systems, chatbots).  
+
+#### **2. Key Characteristics**  
+- **Incremental Learning**: Processes data in small batches sequentially.  
+- **Continuous Improvement**: Model adapts to new data without retraining from scratch.  
+- **Low Memory Usage**: Works well with large datasets since it doesn’t require storing all data.  
+- **Production-Friendly**: Deployed models keep learning in real-time.  
+
+#### **3. Examples of Online Learning**  
+- **Chatbots (Google Assistant, Alexa)**: Improve responses based on user interactions.  
+- **YouTube Recommendations**: Adjusts suggestions based on user watch history.  
+- **SwiftKey Keyboard**: Enhances predictions as users type.  
+- **E-commerce Platforms**: Personalizes recommendations dynamically.  
+
+#### **4. Advantages**  
+- **Handles Concept Drift**: Adapts when data patterns change over time (e.g., stock markets, trends).  
+- **Cost-Efficient**: Reduces computational costs by processing small data batches.  
+- **Real-Time Adaptation**: Ideal for live data streams (IoT, fraud detection).  
+
+#### **5. Challenges**  
+- **Data Quality Risks**: Noisy or biased incoming data can degrade model performance.  
+- **Monitoring Required**: Needs robust anomaly detection to prevent model drift.  
+- **Complex Implementation**: Harder to deploy than batch learning due to real-time constraints.  
+
+#### **6. Implementation Methods**  
+- **Algorithms**:  
+  - **Stochastic Gradient Descent (SGD)**  
+  - **Online Random Forests**  
+  - **Adaptive Models (e.g., River library in Python)**  
+- **Steps**:  
+  1. Start with an initial model trained on a small dataset.  
+  2. Continuously feed new data and update weights incrementally.  
+  3. Deploy on servers for live predictions + learning.  
+
+#### **7. Online vs. Batch Learning**  
+| **Factor**          | **Online Learning**                          | **Batch Learning**                     |  
+|---------------------|---------------------------------------------|----------------------------------------|  
+| **Data Processing** | Incremental, sequential                     | Full dataset at once                   |  
+| **Computation**     | Low per-batch cost, continuous              | High upfront cost                      |  
+| **Flexibility**     | Adapts to changing data                     | Static once trained                    |  
+| **Use Case**        | Real-time systems (recommenders, chatbots)  | Stable environments (image classification) |  
+
+#### **8. When to Use Online Learning?**  
+- Data arrives **continuously** (e.g., sensor data, user clicks).  
+- Problem nature **changes over time** (e.g., customer preferences).  
+- **Limited computational resources** (avoids heavy retraining).  
+
+#### **9. Key Considerations**  
+- **Learning Rate**: Must balance new vs. old knowledge (avoid forgetting).  
+- **Data Security**: Protect against adversarial inputs corrupting the model.  
+- **Fallback Mechanism**: Rollback options if model behaves unexpectedly.  
+
+### **Final Notes**  
+- Online learning is powerful for **dynamic, real-time applications** but requires careful monitoring.  
+- Libraries like **River** and **scikit-learn’s partial_fit()** help implement it.  
+- Not ideal for **stable, small-scale problems** where batch learning suffices.  
+
+---
