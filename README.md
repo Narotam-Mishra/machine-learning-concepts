@@ -2953,3 +2953,87 @@ The classification here is based on **how the ML model is trained**:
 - Not ideal for **stable, small-scale problems** where batch learning suffices.  
 
 ---
+
+### D6 - Instance-Based Vs Model-Based Learning | Types of Machine Learning (16:43)
+
+#### **1. Overview**  
+- Machine learning models learn from data in two primary ways:  
+  - **Instance-Based Learning (IBL)**: Memorizes training data and makes predictions based on similarity to stored instances.  
+  - **Model-Based Learning (MBL)**: Learns an underlying mathematical model (e.g., decision boundary) to generalize from data.  
+
+---
+
+### **2. Instance-Based Learning (IBL)**  
+#### **Key Characteristics**:  
+- **"Lazy Learning"**: No explicit training phase; defers processing until prediction time.  
+- **Memorization**: Stores the entire training dataset.  
+- **Prediction**: Uses similarity metrics (e.g., distance functions) to compare new instances with stored data.  
+  - Example: **k-Nearest Neighbors (k-NN)** classifies a point based on majority vote of its *k* closest neighbors.  
+
+#### **Example**:  
+- **Problem**: Predict if a student gets placed (Yes/No) based on IQ and CGPA.  
+- **Approach**:  
+  1. Store all training data points (IQ, CGPA, Placement Status).  
+  2. For a new student, compute distances to all stored points.  
+  3. Predict placement based on the majority label of the nearest neighbors.  
+
+#### **Pros and Cons**:  
+- ✅ Simple to implement.  
+- ❌ Computationally expensive during prediction (scales with dataset size).  
+- ❌ Sensitive to noisy/irrelevant features.  
+
+---
+
+### **3. Model-Based Learning (MBL)**  
+#### **Key Characteristics**:  
+- **"Eager Learning"**: Builds a generalized model during training.  
+- **Abstraction**: Learns patterns/relationships (e.g., mathematical functions) from data.  
+- **Prediction**: Applies the learned model to new data without referencing training instances.  
+  - Example: **Logistic Regression** learns a decision boundary to separate classes.  
+
+#### **Example**:  
+- **Problem**: Same student placement prediction.  
+- **Approach**:  
+  1. Train a model (e.g., logistic regression) to find a decision boundary (e.g., `CGPA + 2*IQ > 150 → Placement`).  
+  2. For a new student, apply the learned rule to predict placement.  
+
+#### **Pros and Cons**:  
+- ✅ Fast predictions (no need to store training data).  
+- ✅ Handles noise better (generalizes patterns).  
+- ❌ Requires upfront training effort.  
+
+---
+
+### **4. Key Differences**  
+
+| **Aspect**               | **Instance-Based Learning**               | **Model-Based Learning**                |  
+|--------------------------|-------------------------------------------|------------------------------------------|  
+| **Training Phase**       | None (stores data)                        | Builds a model (e.g., decision boundary) |  
+| **Prediction Speed**     | Slow (computes distances at runtime)      | Fast (uses pre-trained model)            |  
+| **Storage**              | High (stores all training data)           | Low (stores only model parameters)       |  
+| **Generalization**       | Relies on local similarity                | Learns global patterns                   |  
+| **Examples**             | k-NN, Case-Based Reasoning                | Linear Regression, Decision Trees, SVM   |  
+
+---
+
+### **5. When to Use?**  
+- **IBL**:  
+  - Small datasets where interpretability is key.  
+  - Non-parametric problems (no assumed data distribution).  
+- **MBL**:  
+  - Large datasets requiring scalability.  
+  - Clear underlying patterns (e.g., linear relationships).  
+
+---
+
+### **6. Practical Considerations**  
+- **Data Preprocessing**: Both require feature scaling, handling missing values, etc.  
+- **Model Complexity**: MBL may need hyperparameter tuning (e.g., regularization).  
+- **Concept Drift**: IBL adapts better to changing data (if storage isn’t constrained).  
+
+---
+
+### **Key Takeaways**  
+1. **IBL** is like memorizing past examples; **MBL** is like deriving rules.  
+2. **Trade-offs**: IBL trades storage for flexibility; MBL trades upfront training for efficiency.  
+3. **Algorithm Identification**: Recognize if an algorithm (e.g., SVM, k-NN) is instance-based or model-based.  
