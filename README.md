@@ -3118,3 +3118,7 @@ The classification here is based on **how the ML model is trained**:
 3.  **Deployment is Hard:** Software integration and cross-platform deployment are significant and often underestimated challenges in the ML lifecycle.
 4.  **Mind the Cost:** Be aware of the high operational costs of running ML models in production at scale.
 5.  **Gain End-to-End Experience:** The most valuable skill is the experience of building an ML model **and** successfully deploying it to real users. This field is known as **MLOps (Machine Learning Operations)**.
+
+---
+
+### D8 - Application of Machine Learning | Real Life Machine Learning Applications (29:01)
