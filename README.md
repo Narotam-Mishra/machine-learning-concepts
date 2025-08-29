@@ -3200,8 +3200,6 @@ This is a powerful application of Natural Language Processing (NLP), a subfield 
 
 ### D9 - Machine Learning Development Life Cycle | MLDLC in Data Science (25:12)
 
-Of course. Here is a detailed summary of the Machine Learning Development Life Cycle (MLDLC) concepts discussed in the video, along with important pointers.
-
 ### **Summary of MLDLC (Machine Learning Development Life Cycle)**
 
 Just like software development has SDLC (Software Development Life Cycle), machine learning projects require a structured process called MLDLC. This is a set of guidelines to follow when building any ML-based software product, from the initial idea to the final deployed product. The speaker emphasizes that knowing this is crucial for industry roles and building real-world products, beyond just training a model for accuracy in academic projects. It is divided into **9 key steps**:
@@ -3295,4 +3293,10 @@ Just like software development has SDLC (Software Development Life Cycle), machi
 2.  **Beyond Accuracy:** The goal is not just to get a high accuracy score and stop. The goal is to build a complete, functional, and maintainable product.
 3.  **Iterative Process:** The lifecycle is not always linear. Based on feedback from testing and monitoring, you might have to go back to earlier steps (e.g., collect more data, re-engineer features).
 4.  **Focus on Data:** A large portion of the effort (around 80%) is spent on data-related tasks (gathering, cleaning, EDA) rather than just model training.
+
+---
+
+### D11 - 
+
+
 
