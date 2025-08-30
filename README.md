@@ -3296,7 +3296,149 @@ Just like software development has SDLC (Software Development Life Cycle), machi
 
 ---
 
-### D11 - 
+### D11 - What are Tensors | Tensor In-depth Explanation | Tensor in Machine Learning (41:28)
 
+#### **Core Concept:**
+*   A **tensor** is a generalized data structure for storing numbers in N dimensions.
+*   It is a container for numbers, and sometimes characters, but 99.99% of the time it's used for numbers.
+*   The terms used in mathematics/physics (scalar, vector, matrix) are all specific types of tensors, which computer scientists have generalized under the single term "tensor".
 
+#### **Hierarchy of Tensors (By Dimension):**
 
+1.  **0-D Tensor (Scalar):**
+    *   A single number.
+    *   **Rank:** 0
+    *   **Example:** `5`, `20`, `3.14`
+
+2.  **1-D Tensor (Vector):**
+    *   An array or list of numbers.
+    *   **Rank:** 1
+    *   **Example:** `[1, 2, 3, 4]`
+    *   The number of elements in the vector defines its number of dimensions. A vector with 4 elements is a 4-dimensional vector.
+
+3.  **2-D Tensor (Matrix):**
+    *   A collection of vectors (a list of lists).
+    *   **Rank:** 2
+    *   **Example:** `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+    *   This is what you typically think of as a grid or table of numbers.
+
+4.  **3-D Tensor:**
+    *   A collection of matrices.
+    *   **Rank:** 3
+    *   **Example:** A stack of three 2x2 matrices. Often used for time-series data or RGB images (height x width x color channels).
+
+5.  **Higher-D Tensors (4-D, 5-D, etc.):**
+    *   A collection of lower-dimensional tensors.
+    *   **General Rule:** An N-dimensional tensor is a collection of (N-1)-dimensional tensors.
+    *   **Example:** A 4-D tensor is a collection of 3-D tensors. This is commonly used for batches of images (batch-size x height x width x channels).
+
+#### **Key Terminology & Important Pointers:**
+
+*   **Rank (or Order):** This is the **number of axes (dimensions)** a tensor has.
+    *   *Pointer:* The terms **rank**, **number of axes**, and **number of dimensions** are often used interchangeably in this context.
+    *   A scalar has rank 0, a vector has rank 1, a matrix has rank 2, etc.
+
+*   **Axis (plural: Axes):** A specific dimension of a tensor.
+    *   *Pointer:* The number of axes is equal to the rank.
+
+*   **Shape:** This defines the **length (number of elements) along each axis** of the tensor. It is a tuple of integers.
+    *   *Example:* A matrix with 3 rows and 2 columns has a shape of `(3, 2)`.
+    *   *Pointer:* The **total number of items** in a tensor is found by **multiplying all the numbers in its shape tuple**.
+
+*   **Crucial Pointer on Dimensionality:** The video clarifies a common point of confusion:
+    *   A **1-D tensor (vector)** like `[1, 2, 3, 4]` is itself a tensor of rank 1.
+    *   However, the **dimensionality of the data** it represents is 4 (because it has 4 elements). So, it's a 1-D tensor (in structure) holding 4-dimensional data (in content).
+
+#### **Practical Creation (Using NumPy):**
+The video demonstrates creating tensors using the `numpy` library in Python:
+*   A scalar is created with `np.array(5)`
+*   A vector is created with `np.array([1, 2, 3, 4])`
+*   A matrix is created with `np.array([[1,2,3], [4,5,6]])` (passing a list of lists).
+
+### **Overall Important Pointers:**
+
+1.  **Universal Data Structure:** Tensors are the standard way data is represented and passed through machine learning models. You must understand them.
+2.  **Generalization:** Think of tensors as a generalization of scalars, vectors, and matrices to N dimensions.
+3.  **Rank vs. Dimensional Data:** Distinguish between the **rank** of the tensor (its number of axes) and the **dimensionality of the data** it contains (the length of its axes).
+4.  **Shape is Key:** The `shape` attribute is the most important property of a tensor as it tells you exactly how the data is structured.
+5.  **Building Higher Dimensions:** Higher-dimensional tensors are built by nesting lower-dimensional ones (e.g., a list of matrices makes a 3D tensor).
+
+---
+
+### Tensor Examples
+
+#### Vectors and Dimensionality
+- **Vector**: A mathematical representation of data points in multi-dimensional space
+- **Example**: Student data with CGPA, IQ, and State forms a 3-dimensional vector
+- Each student can be represented as a point in 3D coordinate space
+- The number of input features determines the dimensionality
+
+#### Key Distinction: Data Dimensions vs. Vector Dimensions
+- **Important**: Don't confuse the number of input columns with vector dimensionality
+- If you have 50 input features, you're working in 50-dimensional space
+- But each data point is still represented as a single vector
+
+### Practical Examples
+
+#### 1. Student Classification Problem (1D Tensor)
+- **Input Features**: CGPA, IQ Score, State (West Bengal/Karnataka)
+- **Output**: Placement status (Yes/No)
+- **Representation**: Each student = 3D vector (CGPA, IQ, State_encoded)
+- **Dataset**: Collection of 1000 student vectors = 2D matrix (1000 × 3)
+
+#### 2. Text Vectorization (NLP) (2D Tensor)
+- **Challenge**: Machine learning algorithms only understand numbers, not text
+- **Solution**: Text vectorization process
+- **Method**: 
+  - Create unique word vocabulary
+  - Assign numerical representations to each word
+  - Convert sentences to numerical vectors
+- **Example**: "Hi Nitesh" becomes [1, 0, 0] if "Hi"=1, "Nitesh"=0, "Rahul"=0
+
+#### 3. Time Series Data (3D Tensors)
+- **Example**: Stock market data
+- **Structure**: Daily high/low prices collected over time
+- **Dimensions**: 
+  - 365 days (time axis)
+  - 2 features (high price, low price)
+  - Multiple years of data
+- **Result**: 3D tensor (365 × 2 × number_of_years)
+
+#### 4. Image Processing (3D/4D Tensors)
+- **Single Image**: Collection of pixels with numerical values
+- **Grayscale**: 2D matrix (height × width)
+- **Color Image**: 3D tensor (height × width × 3 channels for RGB)
+- **Example**: 100×100 color image = 100×100×3 tensor
+
+#### 5. Video Processing (5D Tensors)
+- **Video**: Sequence of images displayed rapidly (30fps, 60fps, etc.)
+- **Structure**: Multiple color images over time
+- **Dimensions**: 
+  - Number of videos
+  - Frames per video (time axis)
+  - Image height
+  - Image width  
+  - Color channels (RGB)
+- **Example**: 4 videos of 60 seconds at 30fps, 1024×728 resolution = 5D tensor
+
+### Storage and Computational Challenges
+
+#### Memory Requirements Example
+For a 60-second video (30fps, 1024×728, color):
+- Total elements: 4 videos × 1800 frames × 1024 × 728 × 3 channels
+- Storage needed: ~27 GB (assuming 32-bit per element)
+- This demonstrates why video compression formats (MP4, AVI) are essential
+
+### Key Takeaways
+
+1. **Data Representation**: All ML data is ultimately represented as tensors (multi-dimensional arrays)
+2. **Dimensionality**: The number of features determines the dimensional space you're working in
+3. **Scalability**: Higher dimensions and more data points exponentially increase computational requirements
+4. **Practical Applications**: From simple tabular data to complex video processing, tensor representation is fundamental
+5. **Compression**: Real-world applications require efficient data formats to handle large tensor operations
+
+### Important Pointers
+- Always distinguish between the conceptual dimensions of your problem and the actual tensor dimensions
+- Consider memory and computational constraints when working with high-dimensional data
+- Text, images, and videos all follow the same fundamental principle of numerical representation
+- The choice of representation method significantly impacts model performance and computational efficiency
