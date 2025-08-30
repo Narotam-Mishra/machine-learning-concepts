@@ -3298,6 +3298,8 @@ Just like software development has SDLC (Software Development Life Cycle), machi
 
 ### D11 - What are Tensors | Tensor In-depth Explanation | Tensor in Machine Learning (41:28)
 
+---
+
 #### **Core Concept:**
 *   A **tensor** is a generalized data structure for storing numbers in N dimensions.
 *   It is a container for numbers, and sometimes characters, but 99.99% of the time it's used for numbers.
@@ -3380,13 +3382,13 @@ The video demonstrates creating tensors using the `numpy` library in Python:
 
 ### Practical Examples
 
-#### 1. Student Classification Problem (1D Tensor)
+#### 1. Student Classification Problem (1D Tensors)
 - **Input Features**: CGPA, IQ Score, State (West Bengal/Karnataka)
 - **Output**: Placement status (Yes/No)
 - **Representation**: Each student = 3D vector (CGPA, IQ, State_encoded)
 - **Dataset**: Collection of 1000 student vectors = 2D matrix (1000 × 3)
 
-#### 2. Text Vectorization (NLP) (2D Tensor)
+#### 2. Text Vectorization (NLP) (2D Tensors)
 - **Challenge**: Machine learning algorithms only understand numbers, not text
 - **Solution**: Text vectorization process
 - **Method**: 
