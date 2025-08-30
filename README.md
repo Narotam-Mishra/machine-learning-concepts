@@ -3444,3 +3444,5 @@ For a 60-second video (30fps, 1024×728, color):
 - Consider memory and computational constraints when working with high-dimensional data
 - Text, images, and videos all follow the same fundamental principle of numerical representation
 - The choice of representation method significantly impacts model performance and computational efficiency
+
+#### [Kaggle](https://www.kaggle.com/)
