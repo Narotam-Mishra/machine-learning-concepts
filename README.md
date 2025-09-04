@@ -3359,7 +3359,7 @@ The video demonstrates creating tensors using the `numpy` library in Python:
 
 ### **Overall Important Pointers:**
 
-1.  **Universal Data Structure:** Tensors are the standard way data is represented and passed through machine learning models. You must understand them.
+1.  **Universal Data Structure:** Tensors are the standard in way data is represented and passed through machine learning models.
 2.  **Generalization:** Think of tensors as a generalization of scalars, vectors, and matrices to N dimensions.
 3.  **Rank vs. Dimensional Data:** Distinguish between the **rank** of the tensor (its number of axes) and the **dimensionality of the data** it contains (the length of its axes).
 4.  **Shape is Key:** The `shape` attribute is the most important property of a tensor as it tells you exactly how the data is structured.
@@ -3446,3 +3446,7 @@ For a 60-second video (30fps, 1024×728, color):
 - The choice of representation method significantly impacts model performance and computational efficiency
 
 #### [Kaggle](https://www.kaggle.com/)
+
+---
+
+### D13 - End to End Toy Project (30:42)
