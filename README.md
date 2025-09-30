@@ -3491,3 +3491,79 @@ For a 60-second video (30fps, 1024×728, color):
 ### Final Workflow Diagram (for clarity)
 
 `Data -> Preprocessing -> EDA -> Train/Test Split -> Scaling -> Model Training -> Model Evaluation -> Export Model -> Deploy`
+---
+
+### D14 - How to Frame a Machine Learning Problem | How to plan a Data Science Project Effectively (22:21)
+
+The lecture explains the end-to-end thought process of a Data Scientist solving a real-world business problem, using the example of **reducing customer churn for a Netflix-like company**. It emphasizes that before writing any code, a Data Scientist must first convert a vague business problem ("Increase Revenue") into a precise, solvable mathematical problem.
+
+---
+
+### Step-by-Step Breakdown of the ML Workflow
+
+#### 1. Business Problem to Mathematical Problem
+*   **Business Problem:** The company wants to increase revenue.
+*   **Initial Thought Process:**
+    *   Revenue can be increased by acquiring new customers or by getting more money from existing ones.
+    *   A better solution is to **reduce customer churn** (the percentage of customers leaving the platform).
+*   **Key Metric Identified:** **Churn Rate** (e.g., currently 4%).
+*   **Mathematical Problem Defined:** Reduce the churn rate from 4% to 3.75%.
+
+> **💡 Important Pointer:** The first and most crucial step is to **frame the business problem as a concrete, measurable mathematical goal.**
+
+#### 2. Defining the Type of Machine Learning Problem
+*   **Initial Idea (Classification):** Identify which customers are likely to leave (a binary "Yes" or "No").
+*   **Refined Idea (Regression):** A more sophisticated approach is to predict the **probability of each customer leaving** (a score between 0% and 100%). This allows for targeted actions, like offering higher discounts to customers with a very high churn probability.
+*   **Final Problem Type:** This becomes a **Regression problem** where the output is a continuous churn probability score.
+
+> **💡 Important Pointer:** Don't jump to the first technical solution. Think about the business implications. A probability score is often more actionable than a simple classification.
+
+#### 3. Solution & Action Plan
+*   **Proposed Action:** Offer discounts to customers who are predicted to churn.
+*   **Targeting:** The discount amount will be proportional to the customer's predicted churn probability (higher risk = higher discount).
+
+#### 4. Data Requirements & Feature Engineering
+This is about identifying what data is needed to build the model.
+*   **Potential Features to Consider:**
+    *   **Watch Time:** How much time does the user spend on the platform?
+    *   **Search Behavior:** Number of searches, especially for content not found on the platform.
+    *   **Content Drop-off:** How often does a user start a movie/show and not finish it?
+    *   **Interaction with Recommendations:** How many recommended movies does the user click on?
+*   **Collaboration Needed:** The Data Scientist must work with **Data Engineers** to check if this data is available and to build a **data warehouse** or pipeline to access it.
+
+> **💡 Important Pointer:** A Data Scientist doesn't work in isolation. Close collaboration with Data Engineers is essential to get the right data.
+
+#### 5. Model Evaluation & Success Metrics
+*   **Primary Metric:** The ultimate success is measured by the **actual reduction in the churn rate** (e.g., did it go from 4% to 3.75%?).
+*   **Secondary Checks:** Validate if the model is correctly identifying the right customers (e.g., are the customers we predicted would churn actually the ones leaving?).
+
+> **💡 Important Pointer:** Define success metrics (KPIs) upfront. They guide the entire project and prove its value.
+
+#### 6. Operational Considerations: Online vs. Offline Learning
+*   **Online Learning:** The model continuously learns and updates itself from a live stream of new data. This is complex and requires a robust, real-time data infrastructure.
+*   **Offline/Batch Learning:** The model is re-trained periodically (e.g., weekly) on a new batch of data. This is more common and manageable.
+*   **Decision:** The team might start with offline retraining due to infrastructure constraints.
+
+> **💡 Important Pointer:** The choice between online and offline learning is a practical decision based on available infrastructure, data volatility, and project needs.
+
+#### 7. Other Important Considerations
+*   **Feature Availability:** Double-check with engineers that the features you want to use are actually available and reliable.
+*   **Model Generalization:** Will one model work for all customer segments (e.g., different countries)? Or do you need separate models for different geographies?
+*   **Leadership & Planning:** Rushing into coding without thorough planning leads to wasted resources and time. A senior Data Scientist spends significant time thinking through these steps before implementation.
+
+### Summary of Key Concepts Mentioned
+
+| Concept | Description | Example from the Video |
+| :--- | :--- | :--- |
+| **Churn Rate** | The percentage of customers who leave a service over a period. | The key business metric to reduce from 4% to 3.75%. |
+| **Classification** | An ML problem type where the output is a discrete category/class. | Initially, classifying customers as "Will Churn" or "Will Not Churn." |
+| **Regression** | An ML problem type where the output is a continuous value. | The refined approach: predicting a **probability score** (0 to 1) of churn. |
+| **Feature Engineering** | The process of using domain knowledge to create input features for ML models. | Identifying relevant features like `watch_time`, `searches_not_found`, etc. |
+| **Model Evaluation** | The process of measuring a model's performance and effectiveness. | Using the actual churn rate and precision of predictions as success metrics. |
+| **Online Learning** | A model updates itself incrementally as new data arrives in real-time. | Considered but deemed complex for the initial solution. |
+| **Offline/Batch Learning** | A model is trained periodically on a static batch of data. | The more feasible starting approach, with weekly re-training. |
+
+---
+
+### D15 - Working with CSV files (36:29)
+
